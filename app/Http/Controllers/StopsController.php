@@ -6,8 +6,10 @@ use Illuminate\Http\Request;
 
 use App\Stop;
 use App\Bus;
-use App\Route;
 
+/**
+ * @resource Stops
+ */
 class StopsController extends Controller
 {
     public function __construct()
@@ -17,6 +19,9 @@ class StopsController extends Controller
             ->only('update');
     }
 
+    /**
+     * Display a listing of the stops.
+     */
     public function index()
     {
 
@@ -27,7 +32,9 @@ class StopsController extends Controller
         return response($stops);
     }
 
-
+    /**
+     * Display the specified stop.
+     */
     public function show($id, $relation = false)
     {
 
@@ -45,6 +52,9 @@ class StopsController extends Controller
         return response($stop);
     }
 
+    /**
+     * Display the nearest bus for user.
+     */
     public function getNearestBus($neededStopId, Request $request)
     {
 
@@ -52,9 +62,9 @@ class StopsController extends Controller
         $lon = 36.25476300;//3
         $lat = 50.01058900;
 
-        $busesDistance = Stop::getBusesDistanceToUser($lon,$lat,$neededStopId);
+       // $busesDistance = Stop::getBusesDistanceToUser($lon,$lat,$neededStopId);
 
-        dd('end');
+       // dd('end');
 
         return '';
 
@@ -81,9 +91,9 @@ class StopsController extends Controller
 
         // dd($bus);
 
-        dd($toStop);
+       // dd($toStop);
 
-        dd($nearestStop);
+        //dd($nearestStop);
 
         //$lon = $request->lon;
         //$lat = $request->lat;
@@ -99,7 +109,7 @@ class StopsController extends Controller
         //  $path = round($this->distance($user['lat'], $user['lon'], $selectStopLat, $selectStopLon),2);
 
 
-        dd($buses);
+        //dd($buses);
     }
 
 

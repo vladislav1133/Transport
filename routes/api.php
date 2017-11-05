@@ -13,35 +13,22 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
+//Route::middleware('auth:api')->get('/user', function (Request $request) {
+//    return $request->user();
+//});
+
+// API Group Routes
+Route::group(array('prefix' => 'v1', 'middleware' => []), function () {
+
+
+    Route::get('buses','BusesController@index');
+    Route::get('buses/{id}/{relation?}','BusesController@show');
+    Route::put('buses/{id}','BusesController@update');
+
+    Route::get('stops', 'StopsController@index');
+    Route::get('stops/{id}/{relation?}', 'StopsController@show');
+    Route::get('stops/nearestbus/{stopId}', 'StopsController@getNearestBus');
+
+    Route::get('routes/','RoutesController@index');
+    Route::get('routes/{id}/{relation?}','RoutesController@show');
 });
-
-
-
-
-Route::get('buses','BusesController@index');
-Route::get('buses/{id}/{relation?}','BusesController@show');
-Route::put('buses/{id}','BusesController@update');
-
-Route::resource('stops','StopsController');
-Route::get('stops/nearestbus/{stopId}', 'StopsController@getNearestBus');
-Route::get('stops/{id}/{relation?}', 'StopsController@show');
-
-Route::resource('routes','RoutesController');
-Route::get('routes/{id}/{relation?}','RoutesController@show');
-
-//Route::put('buses/{id}','BusesController@update');
-
-
-//Route::get('buses/{id}/{relation}','BusesController');
-
-
-//Verb	URI	Action	Route Name
-//GET	/photos	index	photos.index
-//GET	/photos/create	create	photos.create
-//POST	/photos	store	photos.store
-//GET	/photos/{photo}	show	photos.show
-//GET	/photos/{photo}/edit	edit	photos.edit
-//PUT/PATCH	/photos/{photo}	update	photos.update
-//DELETE	/photos/{photo}	destroy	photos.destroy

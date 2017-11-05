@@ -66,7 +66,7 @@ class Stop extends Model {
 
 
 
-        dd();
+        //dd();
 
     }
 
@@ -306,7 +306,7 @@ class Stop extends Model {
         }
 
         dump($busesDistance);
-        dd(' end');
+        //dd(' end');
 
         //есть флаг
         //есть стопсы и авто

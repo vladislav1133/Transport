@@ -2,11 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\UpdateBusRequest;
 use Illuminate\Http\Request;
 
 use App\Bus;
 
-
+/**
+ * @resource Buses
+ */
 class BusesController extends Controller {
 
     public function __construct(){
@@ -15,6 +18,9 @@ class BusesController extends Controller {
             ->except('index','show','update');
     }
 
+    /**
+     * Display a listing of the buses.
+     */
     public function index() {
 
         $buses = Bus::get();
@@ -24,7 +30,10 @@ class BusesController extends Controller {
         return response($buses);
     }
 
-    public function show($id, $relation = false) {
+    /**
+     * Display the specified bus.
+     */
+    public function show($id, $relation = '') {
 
         $bus = Bus::find($id);
 
@@ -39,19 +48,19 @@ class BusesController extends Controller {
         return response($bus);
     }
 
-    public function edit($id) {
 
-    }
+    /**
+     * Update the specified bus.
+     */
+    public function update($id, UpdateBusRequest $request) {
 
-    public function update(Request $request, $id) {
 
         $bus = Bus::findOrFail($id);
 
-        if($bus->token !== $request->input('token')) return response()->json(['status' => '403', 'message' => 'Forbidden for save'], 403);
+        if($bus->token !== $request->token) return response()->json(['status' => '403', 'message' => 'Forbidden for save'], 403);
 
         $bus->lon = $request->lon;
         $bus->lat = $request->lat;
-        $bus->speed = $request->speed;
         $bus->direction = $request->direction;
 
 
