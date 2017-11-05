@@ -5,30 +5,107 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Stop;
+use App\Bus;
+use App\Route;
 
 class StopsController extends Controller
 {
-    public function __construct(){
+    public function __construct()
+    {
 
         $this->middleware('auth:api')
-            ->except('index','show');
+            ->only('update');
     }
 
-    public function index(){
+    public function index()
+    {
 
         $stops = Stop::get();
 
-        $stops = json_encode($stops,JSON_PRETTY_PRINT |JSON_UNESCAPED_UNICODE);
+        $stops = json_encode($stops, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE);
 
         return response($stops);
     }
 
-    public function show($id){
 
-        $stops = Stop::find($id);
+    public function show($id, $relation = false)
+    {
 
-        $stops = json_encode($stops,JSON_PRETTY_PRINT |JSON_UNESCAPED_UNICODE);
+        $stop = Stop::find($id);
 
-        return response($stops);
+        if ($relation) {
+
+            if ($stop[$relation] === null) return response()->json(['status' => '400', 'message' => 'Tried accessing none existing relation'], 400);
+
+            $stop = $stop[$relation];
+        }
+
+        $stop = json_encode($stop, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE);
+
+        return response($stop);
     }
+
+    public function getNearestBus($neededStopId, Request $request)
+    {
+
+
+        $lon = 36.25476300;//3
+        $lat = 50.01058900;
+
+        $busesDistance = Stop::getBusesDistanceToUser($lon,$lat,$neededStopId);
+
+        dd('end');
+
+        return '';
+
+        $toStop = Bus::find($id)->toArray();
+
+
+        $stops = Stop::get()->toArray();
+
+        $nearestStop = Stop::getNearestStop($lon, $lat, $stops);
+
+        //dd($nearestStop);
+
+        $qq = Stop::getNearestBus($nearestStop, $toStop);
+
+        //dd(Stop::getDistance(50.00417800,36.24783400,50.02089200,36.27059700,2));
+
+
+        // dd($stops);
+
+
+        $toStop = Stop::find(1)->toArray();
+
+        $bus = Bus::find(1)->toArray();
+
+        // dd($bus);
+
+        dd($toStop);
+
+        dd($nearestStop);
+
+        //$lon = $request->lon;
+        //$lat = $request->lat;
+
+        $nearestStop = 1;
+
+
+        $buses = Bus::find(1);
+
+        $selectStopLon = 36.27059700;
+        $selectStopLat = 50.02089200;
+
+        //  $path = round($this->distance($user['lat'], $user['lon'], $selectStopLat, $selectStopLon),2);
+
+
+        dd($buses);
+    }
+
+
 }
+
+
+//1 Get a buses on that route
+//2 get nearest
+

@@ -16,13 +16,16 @@ class Bus extends Model
         'token'
     ];
 
-    public function stops(){
-
-        return $this->belongsToMany('App\Stop')->withTimestamps();
-    }
 
     public function description() {
 
-        return $this->hasOne('App\Description');
+        return $this->belongsTo('App\Description');
     }
+
+    public function routes() {
+
+        return $this->belongsTo('App\Route');
+    }
+
+
 }

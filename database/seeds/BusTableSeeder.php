@@ -3,7 +3,7 @@
 use Illuminate\Database\Seeder;
 
 use App\Bus;
-use App\Description;
+use App\Route;
 
 class BusTableSeeder extends Seeder
 {
@@ -18,22 +18,14 @@ class BusTableSeeder extends Seeder
 
         Bus::create([
             'number' => 289,
+            'description_id' => 1,
+            'route_id' => 1,
             'lon' => 36.3269748,
             'lat' => 49.9945519,
-            'token' => str_random(60)
+            'direction' => 1,
+            'token' => 'a5J5D7P5ytMraoClhIyysUkmYZJgh5wz9toqakQF268uT4ofyjOzliDk3ZLL'
         ]);
 
-        Description::create([
-            'bus_id' => '1',
-            'start' => 'ст. м. Пушкинская',
-            'end' => 'Городское кладбище №13',
-            'price' => '4.0 UAH',
-            'distance' => '2.88 км',
-            'interval' => '15 - 20 мин',
-            'work_time' => '7:00 - 21:45',
-            'carrier' => 'ПОГ ВСК "Юридическая Академия"'
-
-        ]);
 
     }
 }

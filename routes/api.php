@@ -22,10 +22,15 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 Route::get('buses','BusesController@index');
 Route::get('buses/{id}/{relation?}','BusesController@show');
-
 Route::put('buses/{id}','BusesController@update');
 
 Route::resource('stops','StopsController');
+Route::get('stops/nearestbus/{stopId}', 'StopsController@getNearestBus');
+Route::get('stops/{id}/{relation?}', 'StopsController@show');
+
+Route::resource('routes','RoutesController');
+Route::get('routes/{id}/{relation?}','RoutesController@show');
+
 //Route::put('buses/{id}','BusesController@update');
 
 

@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateBusStopTable extends Migration
+class TableRouteStopTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,16 +13,14 @@ class CreateBusStopTable extends Migration
      */
     public function up()
     {
-        Schema::create('bus_stop', function (Blueprint $table) {
+        Schema::create('route_stop', function (Blueprint $table) {
             $table->increments('id');
 
-            $table->integer('bus_id')->unsigned()->nullable();
-            $table->foreign('bus_id')->references('id')->on('buses')->onDelete('cascade')->onUpdate('cascade');
+            $table->integer('route_id')->unsigned()->nullable();
+            $table->foreign('route_id')->references('id')->on('routes')->onDelete('cascade')->onUpdate('cascade');
 
             $table->integer('stop_id')->unsigned()->nullable();
             $table->foreign('stop_id')->references('id')->on('stops')->onDelete('cascade')->onUpdate('cascade');
-
-            $table->timestamps();
         });
     }
 
@@ -33,6 +31,6 @@ class CreateBusStopTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('bus_stop');
+        Schema::dropIfExists('=route_stop');
     }
 }

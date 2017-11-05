@@ -15,9 +15,19 @@ class CreateBusesTable extends Migration
     {
         Schema::create('buses', function (Blueprint $table) {
             $table->increments('id');
+
+            $table->integer('description_id')->unsigned()->nullable();
+            $table->foreign('description_id')->references('id')->on('descriptions')->onDelete('restrict')->onUpdate('cascade');
+
+            $table->integer('route_id')->unsigned()->nullable();
+            $table->foreign('route_id')->references('id')->on('routes')->onDelete('restrict')->onUpdate('cascade');
+
             $table->string('number',10);
+            $table->integer('direction');
             $table->double('lon',15,8);
             $table->double('lat',15,8);
+            $table->string('token');
+
             $table->timestamps();
         });
     }

@@ -17,7 +17,7 @@ class BusesController extends Controller {
 
     public function index() {
 
-        $buses = Bus::with('stops', 'description')->get();
+        $buses = Bus::get();
 
         $buses = json_encode($buses, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE);
 
@@ -30,11 +30,10 @@ class BusesController extends Controller {
 
         if($relation) {
 
-            if ($bus[$relation] === null)  return response()->json(['status' => '400', 'message' => 'Tried accessing nonexisting relation'], 400);
+            if ($bus[$relation] === null)  return response()->json(['status' => '400', 'message' => 'Tried accessing none existing relation'], 400);
 
                 $bus = $bus[$relation];
         }
-
         $bus = json_encode($bus, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE);
 
         return response($bus);
@@ -52,6 +51,8 @@ class BusesController extends Controller {
 
         $bus->lon = $request->lon;
         $bus->lat = $request->lat;
+        $bus->speed = $request->speed;
+        $bus->direction = $request->direction;
 
 
         $bus->save();
