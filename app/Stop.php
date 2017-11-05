@@ -74,8 +74,8 @@ class Stop extends Model {
         })->get()->toArray();
 
 
-        dump('UserStopId '.$userStopId);
-        dump('NeedStop '.$neededStopId);
+        //dump('UserStopId '.$userStopId);
+        //dump('NeedStop '.$neededStopId);
 
 
 
@@ -88,12 +88,12 @@ class Stop extends Model {
             if($userStopId > $neededStopId) $userDirection = false;
 
 
-            dump('direction '.$userDirection);
+            //dump('direction '.$userDirection);
 
 
-            dump('остановки');
+            //dump('остановки');
             $stops = $routes[0]['stops'];
-            dump($stops);
+            //dump($stops);
 
 
 
@@ -101,16 +101,16 @@ class Stop extends Model {
 
                 $distance = 0;
 
-                dump('bus flag '.$bus['direction']);
-                dump('ближайшая к басу');
+                //dump('bus flag '.$bus['direction']);
+                //dump('ближайшая к басу');
                 $stopNearestBus = Stop::getNearestStop($bus['lon'],$bus['lat']);
                 $stopNearestBusId = $stopNearestBus['id'];
 
-                dump('Ближайшая к басу '.$stopNearestBusId);
+                //dump('Ближайшая к басу '.$stopNearestBusId);
 
 
 
-                dump('В массиве');
+                //dump('В массиве');
 
 
                 //получим ключ
@@ -119,8 +119,8 @@ class Stop extends Model {
                 $userKey = Stop::getKeyArrayByIdStop($stops,$userStopId);
 
 
-                dump($key);
-                dump($stops[$key]);
+                //dump($key);
+                //dump($stops[$key]);
 
                 $bus['direction'] = 0;
 
@@ -131,21 +131,21 @@ class Stop extends Model {
 
                     //6->7 to end
                     $distance1 = Stop::getRouteDistance($stops,$key);
-                    dump('distance_1');
-                    dump($distance1);
+                    //dump('distance_1');
+                    //dump($distance1);
 
                     //7->1 end to start
                     $distance2 = Stop::getRouteDistance($stops);
-                    dump('distance_2');
-                    dump($distance2);
+                    //dump('distance_2');
+                    //dump($distance2);
 
                     //1->3 start to user
 
 
 
                     $distance3 = Stop::getRouteDistance(array_slice($stops,0,$userKey+1));
-                    dump('distance_3');
-                    dump($distance3);
+                    //dump('distance_3');
+                    //dump($distance3);
 
                     $distance = $distance1 + $distance2 + $distance3;
                 }
@@ -155,16 +155,16 @@ class Stop extends Model {
 
                     //6->1 end to start
                     $distance1 = Stop::getRouteDistance(array_slice($stops,0,$key+1));
-                    dump('distance_1');
-                    dump($distance1);
+                    //dump('distance_1');
+                    //dump($distance1);
 
                     //1->3 start to user
 
                     $userKey = Stop::getKeyArrayByIdStop($stops,$userStopId);
 
                     $distance2 = Stop::getRouteDistance(array_slice($stops,0,$userKey+1));
-                    dump('distance_2');
-                    dump($distance2);
+                    //dump('distance_2');
+                    //dump($distance2);
 
                     $distance = $distance1 + $distance2;
                 }
@@ -175,8 +175,8 @@ class Stop extends Model {
                     //2->3
                     $distance1 = Stop::getRouteDistance(array_slice($stops,$key,$userKey));
 
-                    dump('distance_1');
-                    dump($distance1);
+                    //dump('distance_1');
+                    //dump($distance1);
                     $distance = $distance1;
 
                 }
@@ -186,13 +186,13 @@ class Stop extends Model {
 
                     //2->1
                     $distance1 = Stop::getRouteDistance(array_slice($stops,0,$key+1));
-                    dump('distance_1');
-                    dump($distance1);
+                    //dump('distance_1');
+                    //dump($distance1);
 
                     //1->3
                     $distance2 = Stop::getRouteDistance(array_slice($stops,0,$userKey+1));
-                    dump('distance_2');
-                    dump($distance2);
+                    //dump('distance_2');
+                    //dump($distance2);
 
                     $distance = $distance1 + $distance2;
                 }
@@ -205,13 +205,13 @@ class Stop extends Model {
 
                     //2->7
                     $distance1 = Stop::getRouteDistance(array_slice($stops,$key));
-                    dump('distance_1');
-                    dump($distance1);
+                    //dump('distance_1');
+                    //dump($distance1);
 
                     //7->4
                     $distance2 = Stop::getRouteDistance(array_slice($stops,$userKey));
-                    dump('distance_2');
-                    dump($distance2);
+                    //dump('distance_2');
+                    //dump($distance2);
 
                     $distance = $distance1 + $distance2;
                 }
@@ -221,23 +221,23 @@ class Stop extends Model {
 
                     //6->7 to end
                     $distance1 = Stop::getRouteDistance(array_slice($stops,0, $key+1));
-                    dump('distance_1');
-                    dump($distance1);
+                    //dump('distance_1');
+                    //dump($distance1);
 
 
 
                     //7->1 end to start
                     $distance2 = Stop::getRouteDistance($stops);
-                    dump('distance_2');
-                    dump($distance2);
+                    //dump('distance_2');
+                    //dump($distance2);
 
                     //1->3 start to user
 
 
 
                     $distance3 = Stop::getRouteDistance(array_slice($stops,0,$userKey+1));
-                    dump('distance_3');
-                    dump($distance3);
+                    //dump('distance_3');
+                    //dump($distance3);
 
                     $distance = $distance1 + $distance2 + $distance3;
                 }
@@ -247,13 +247,13 @@ class Stop extends Model {
 
                     //2->7
                     $distance1 = Stop::getRouteDistance(array_slice($stops,$key));
-                    dump('distance_1');
-                    dump($distance1);
+                    //dump('distance_1');
+                    //dump($distance1);
 
                     //7->4
                     $distance2 = Stop::getRouteDistance(array_slice($stops,$userKey));
-                    dump('distance_2');
-                    dump($distance2);
+                    //dump('distance_2');
+                    //dump($distance2);
 
                     $distance = $distance1 + $distance2;
                 }
@@ -264,15 +264,15 @@ class Stop extends Model {
 
                     //6->4
                     $distance1 = Stop::getRouteDistance(array_slice($stops,$userKey, ($key-$userKey)+1 ));
-                    dump('distance_1');
-                    dump($distance1);
+                    //dump('distance_1');
+                    //dump($distance1);
 
 
                     $distance = $distance1;
                 }
 
                 //end
-                dump($distance);
+                //dump($distance);
 
                 $busesDistance[] = [
                     'bus_id' => $bus['id'],
@@ -297,9 +297,9 @@ class Stop extends Model {
 
         $response = [];
 
-        $response['bus'] = Bus::find($nearestBus['bus_id']);
+        $response['bus'] = Bus::find($nearestBus['bus_id'])->toArray();
         $response['time'] = intval(round($nearestBus['distance']/45*3600));
-        $response['nearest_stop'] = $userStop;
+        $response['stop'] = $userStop;
         return $response;
     }
 

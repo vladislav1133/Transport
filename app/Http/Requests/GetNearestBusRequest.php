@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class UpdateBusRequest extends FormRequest
+class GetNearestBusRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -26,8 +26,6 @@ class UpdateBusRequest extends FormRequest
         return [
             'lon' => 'required|numeric|min:0',
             'lat' => 'required|numeric|min:0',
-            'direction' => 'required|numeric|between:0,1',
-            'token' => 'required'
         ];
     }
 }

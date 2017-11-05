@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\GetNearestBusRequest;
 use Illuminate\Http\Request;
 
 use App\Stop;
@@ -55,16 +56,18 @@ class StopsController extends Controller
     /**
      * Display the nearest bus for user.
      */
-    public function getNearestBus($neededStopId, Request $request)
+    public function getNearestBus($neededStopId, GetNearestBusRequest $request)
     {
-
-
         $lon = $request->lon;
         $lat = $request->lat;
 
         $busesDistance = Stop::getBusesDistanceToUser($lon,$lat,$neededStopId);
 
-        dd($busesDistance);
+        $busesDistance = json_encode($busesDistance, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE);
+
+        return response($busesDistance);
+
+
 
     }
 
