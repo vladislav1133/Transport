@@ -26,8 +26,9 @@ Route::group(array('prefix' => 'v1', 'middleware' => []), function () {
     Route::put('buses/{id}','BusesController@update');
 
     Route::get('stops', 'StopsController@index');
-    Route::get('stops/{id}/{relation?}', 'StopsController@show');
     Route::get('stops/nearestbus/{stopId}', 'StopsController@getNearestBus');
+    Route::get('stops/{id}/{relation?}', 'StopsController@show');
+
 
     Route::get('routes/','RoutesController@index');
     Route::get('routes/{id}/{relation?}','RoutesController@show');

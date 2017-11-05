@@ -4,6 +4,8 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
+use App\Bus;
+
 class Stop extends Model {
 
 
@@ -54,33 +56,10 @@ class Stop extends Model {
         return $nearestStop;
     }
 
-    public static function getNearestBus($stop,$toStop) {
-
-        $bus = Bus::find(1)->toArray();
-
-        dump($stop);
-        dump($toStop);
-
-        //dump($nearestBusStop);
-       // dump($bus);
-
-
-
-        //dd();
-
-    }
 
     public static function getBusesDistanceToUser($lon,$lat,$neededStopId) {
 
         $busesDistance = [];
-
-        //User data
-        $lon = 36.259777;
-        $lat = 50.015822;
-
-
-        // s4
-        $neededStopId = 3;
 
         //1 Определяем ближайшую остановку
 
@@ -283,7 +262,6 @@ class Stop extends Model {
                 //Script 8 U=4 N=3 B=6 FLAG = 0
                 if($stopNearestBusId >= $userStopId && $userDirection == false && $bus['direction'] == false) {
 
-
                     //6->4
                     $distance1 = Stop::getRouteDistance(array_slice($stops,$userKey, ($key-$userKey)+1 ));
                     dump('distance_1');
@@ -301,21 +279,28 @@ class Stop extends Model {
                     'distance' => $distance
                 ];
             }
-
-
         }
 
-        dump($busesDistance);
-        //dd(' end');
 
-        //есть флаг
-        //есть стопсы и авто
+        //get nearest bus
 
-        //Определил ближнюю
+        $nearestDistance = 0;
 
+        $nearestBus = null;
+        foreach ($busesDistance as $busD){
 
+            if($busD['distance'] > $nearestDistance) {
+                $nearestDistance = $busD['distance'];
+                $nearestBus = $busD;
+            }
+        }
 
-        return '';
+        $response = [];
+
+        $response['bus'] = Bus::find($nearestBus['bus_id']);
+        $response['time'] = intval(round($nearestBus['distance']/45*3600));
+        $response['nearest_stop'] = $userStop;
+        return $response;
     }
 
     public static function getKeyArrayByIdStop($stops,$id) {
