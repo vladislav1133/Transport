@@ -78,7 +78,7 @@ return [
     |
     */
 
-    'locale' => 'en',
+    'locale' => 'ru',
 
     /*
     |--------------------------------------------------------------------------
@@ -182,7 +182,9 @@ return [
 
 
         //documentation service provider
-        Mpociot\ApiDoc\ApiDocGeneratorServiceProvider::class
+        Mpociot\ApiDoc\ApiDocGeneratorServiceProvider::class,
+
+         SleepingOwl\Admin\Providers\SleepingOwlServiceProvider::class,
     ],
 
     /*
