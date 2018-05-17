@@ -64,8 +64,8 @@ class Stops extends Section implements Initializable
     {
         $form = AdminForm::panel()->addBody([
             AdminFormElement::text('name', 'Название остановки')->required(),
-            AdminFormElement::text('lon', 'Долгота')->required(),
-            AdminFormElement::text('lat', 'Широта')->required(),
+            AdminFormElement::number('lon', 'Долгота')->required(),
+            AdminFormElement::number('lat', 'Широта')->required(),
         ]);
         return $form;
     }

@@ -24,8 +24,8 @@ class CreateBusesTable extends Migration
 
             $table->string('number',10);
             $table->integer('direction');
-            $table->double('lon',15,8);
-            $table->double('lat',15,8);
+            $table->double('lon',15,8)->default(0);
+            $table->double('lat',15,8)->default(0);
             $table->string('token');
 
             $table->timestamps();
