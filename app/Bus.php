@@ -13,16 +13,17 @@ class Bus extends Model
     ];
 
     protected $hidden = [
-        'token'
+        'token',
+        'lon',
+        'lat'
     ];
-
 
     public function description() {
 
         return $this->belongsTo('App\Description');
     }
 
-    public function routes() {
+    public function route() {
 
         return $this->belongsTo('App\Route');
     }

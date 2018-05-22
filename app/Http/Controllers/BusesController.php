@@ -5,15 +5,20 @@ namespace App\Http\Controllers;
 use App\Http\Requests\UpdateBusRequest;
 use Illuminate\Http\Request;
 
+use Response;
 use App\Bus;
+use App\Repositories\BusesRepository;
 
 /**
  * @resource Buses
  */
 class BusesController extends Controller {
 
-    public function __construct(){
+    private $busesRepository;
 
+    public function __construct(BusesRepository $busesRepository){
+
+        $this->busesRepository = $busesRepository;
         $this->middleware('auth:api')
             ->except('index','show','update');
     }
@@ -23,29 +28,35 @@ class BusesController extends Controller {
      */
     public function index() {
 
-        $buses = Bus::get();
+        $buses = $this->busesRepository->getAll();
 
-        $buses = json_encode($buses, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE);
+        $response['status'] = true;
 
-        return response($buses);
+        $response['data']['buses'] = $buses;
+
+        return Response::json($response);
     }
 
     /**
      * Display the specified bus.
      */
-    public function show($id, $relation = '') {
+    public function show($id) {
 
-        $bus = Bus::find($id);
+        $bus = $this->busesRepository->find($id);
 
-        if($relation) {
 
-            if ($bus[$relation] === null)  return response()->json(['status' => '400', 'message' => 'Tried accessing none existing relation'], 400);
+        if ($bus) {
 
-                $bus = $bus[$relation];
+            $response['status'] = true;
+            $response['data']['bus'] = $bus;
+
+        } else {
+          $response['status'] = false;
+          $response['error'][] = 'Not found';
         }
-        $bus = json_encode($bus, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE);
 
-        return response($bus);
+
+        return Response::json($response);
     }
 
 
