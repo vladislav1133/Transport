@@ -34,7 +34,7 @@ class Stops extends Section implements Initializable
      */
     public function initialize()
     {
-        $this->addToNavigation()->setIcon('fa fa-globe');
+        $this->addToNavigation()->setIcon('fa fa-globe')->setPriority(4);
     }
     public function scopeLast($query)
     {

@@ -1,9 +1,10 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Api;
 
 use App\Http\Requests\UpdateBusRequest;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
 use Response;
 use App\Bus;
@@ -12,21 +13,24 @@ use App\Repositories\BusesRepository;
 /**
  * @resource Buses
  */
-class BusesController extends Controller {
+class BusesController extends Controller
+{
 
     private $busesRepository;
 
-    public function __construct(BusesRepository $busesRepository){
+    public function __construct(BusesRepository $busesRepository)
+    {
 
         $this->busesRepository = $busesRepository;
-        $this->middleware('auth:api')
-            ->except('index','show','update');
+       // $this->middleware('auth:api');
+         //   ->except('index', 'show', 'update');
     }
 
     /**
      * Display a listing of the buses.
      */
-    public function index() {
+    public function getAll()
+    {
 
         $buses = $this->busesRepository->getAll();
 
@@ -40,7 +44,8 @@ class BusesController extends Controller {
     /**
      * Display the specified bus.
      */
-    public function show($id) {
+    public function getById($id)
+    {
 
         $bus = $this->busesRepository->find($id);
 
@@ -51,8 +56,8 @@ class BusesController extends Controller {
             $response['data']['bus'] = $bus;
 
         } else {
-          $response['status'] = false;
-          $response['error'][] = 'Not found';
+            $response['status'] = false;
+            $response['error'][] = 'Not found';
         }
 
 
@@ -63,12 +68,13 @@ class BusesController extends Controller {
     /**
      * Update the specified bus.
      */
-    public function update($id, UpdateBusRequest $request) {
+    public function update($id, UpdateBusRequest $request)
+    {
 
 
         $bus = Bus::findOrFail($id);
 
-        if($bus->token !== $request->token) return response()->json(['status' => '403', 'message' => 'Forbidden for save'], 403);
+        if ($bus->token !== $request->token) return response()->json(['status' => '403', 'message' => 'Forbidden for save'], 403);
 
         $bus->lon = $request->lon;
         $bus->lat = $request->lat;
@@ -77,7 +83,7 @@ class BusesController extends Controller {
 
         $bus->save();
 
-        return response()->json(['saved'=>true]);
+        return response()->json(['saved' => true]);
     }
 
 }

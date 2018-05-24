@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Api;
 
 use App\Route;
 use Illuminate\Http\Request;
@@ -33,7 +33,7 @@ class RoutesController extends Controller
 
 
     /**
-     * Display the specified route.
+     * Display the specified route
      */
 
     public function show($id, $relation = false) {
@@ -50,4 +50,14 @@ class RoutesController extends Controller
 
         return response($route);
     }
+
+    public function getRouteByCountryCode() {
+
+    }
+
+    public function getRouteByCityId() {
+
+    }
+
+
 }

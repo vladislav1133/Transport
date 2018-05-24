@@ -1,6 +1,5 @@
 <?php
 namespace App\Http\Sections;
-
 use AdminColumn;
 use AdminDisplay;
 use AdminForm;
@@ -16,7 +15,7 @@ use SleepingOwl\Admin\Model\ModelConfiguration as ModelConfiguration;
 use App\Description;
 use App\Route;
 
-class Buses extends Section implements Initializable
+class Countries extends Section implements Initializable
 {
 
 
@@ -31,26 +30,24 @@ class Buses extends Section implements Initializable
     /**
      * @var string
      */
-    protected $title = 'Транспорт';
+    protected $title = 'Страны';
 
     /**
      * @var string
      */
-    protected $alias = 'buses';
+    protected $alias = 'countries';
     /**
      * Initialize class.
      */
     public function initialize()
     {
-        $this->addToNavigation()->setIcon('fa fa-globe')->setPriority(5);
-     //   $this->isEditable($this->model);
+        $this->addToNavigation()->setIcon('fa fa-globe')->setPriority(1);
     }
-
 
 
     public function isCreatable()
     {
-        return true;
+        return false;
     }
 
     public function scopeLast($query)
@@ -88,26 +85,7 @@ class Buses extends Section implements Initializable
             AdminFormElement::select('route_id', 'Маршрут', $routes)->required(),
             AdminFormElement::select('direction', 'Направление', [1 => 'В перед', 0 => 'Назад'])->required()->setDefaultValue(1),
             AdminFormElement::text('token', 'Токен')->required()->setDefaultValue($this->randomStr(60)),
-
-
         ]);
-
-
-//        if (!is_null($id)) { // Если галерея создана и у нее есть ID
-//            $description = AdminDisplay::table()
-//                ->setModelClass(Description::class)// Обязательно необходимо указать класс модели в которой хранятся фотографии
-//                ->setApply(function ($query) use ($id) {
-//                    $query->where('description_id', $id); // Фильтруем список фотографий по ID галереи
-//                })
-//                ->setColumns(
-//                    AdminColumn::type('bus', 'Назавние фотографии')
-//                );
-//
-//            $form->addBody($description);
-//        }
-
-
-
         return $form;
     }
 

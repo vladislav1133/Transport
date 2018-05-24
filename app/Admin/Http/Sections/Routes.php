@@ -37,7 +37,7 @@ class Routes extends Section implements Initializable
      */
     public function initialize()
     {
-        $this->addToNavigation()->setIcon('fa fa-globe');
+        $this->addToNavigation()->setIcon('fa fa-globe')->setPriority(3);
     }
 
     public function scopeLast($query)
@@ -70,6 +70,7 @@ class Routes extends Section implements Initializable
 
         $form = AdminForm::panel()->addBody([
             AdminFormElement::number('distance', 'Длина')->required(),
+            AdminFormElement::number('city_id', 'Город')->required(),
             AdminFormElement::multiselect('stops', 'Остановки', \App\Stop::class)->setDisplay('name'),
             //'direction' => 1,
             // 'token' => $this->randomStr('alphanum', 60)

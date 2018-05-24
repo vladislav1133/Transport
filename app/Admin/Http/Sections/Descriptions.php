@@ -34,7 +34,7 @@ class Descriptions extends Section implements Initializable
      */
     public function initialize()
     {
-        $this->addToNavigation()->setIcon('fa fa-globe');
+        $this->addToNavigation()->setIcon('fa fa-globe')->setPriority(6);
     }
     public function scopeLast($query)
     {

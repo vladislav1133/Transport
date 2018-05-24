@@ -4,7 +4,7 @@ use Illuminate\Database\Seeder;
 
 use App\Route;
 use App\Bus;
-
+use App\City;
 class RouteTableSeeder extends Seeder
 {
     /**
@@ -14,8 +14,11 @@ class RouteTableSeeder extends Seeder
      */
     public function run() {
 
+        $city = City::where('name', 'Kharkiv')->first();
+
         Route::create([
-            'distance' => 2.88
+            'distance' => 2.88,
+            'city_id' => $city->id
         ]);
 
         $route = Route::find(1);

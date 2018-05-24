@@ -16,6 +16,8 @@ class AdminSectionsServiceProvider extends ServiceProvider
         \App\Bus::class => 'App\Http\Sections\Buses',
         \App\Route::class => 'App\Http\Sections\Routes',
         \App\User::class => 'App\Http\Sections\Users',
+        \App\City::class => 'App\Http\Sections\Cities',
+        \App\Country::class => 'App\Http\Sections\Countries',
     ];
 
     /**
