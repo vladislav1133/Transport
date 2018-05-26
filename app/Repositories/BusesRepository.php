@@ -12,7 +12,7 @@ class BusesRepository {
         return $buses;
     }
 
-    public function find($id) {
+    public function getById($id) {
 
         $bus = Bus::with(['description', 'route'])->where('id', $id)->first();
 

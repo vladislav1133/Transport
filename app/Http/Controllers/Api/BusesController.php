@@ -31,10 +31,9 @@ class BusesController extends Controller
      */
     public function getAll()
     {
+        $response['status'] = true;
 
         $buses = $this->busesRepository->getAll();
-
-        $response['status'] = true;
 
         $response['data']['buses'] = $buses;
 
@@ -43,12 +42,13 @@ class BusesController extends Controller
 
     /**
      * Display the specified bus.
+     *
+     * @param $id
+     * @return \Illuminate\Http\JsonResponse
      */
     public function getById($id)
     {
-
-        $bus = $this->busesRepository->find($id);
-
+        $bus = $this->busesRepository->getById($id);
 
         if ($bus) {
 
@@ -57,33 +57,46 @@ class BusesController extends Controller
 
         } else {
             $response['status'] = false;
-            $response['error'][] = 'Not found';
+            $response['errors'][] = 'Not found';
         }
 
-
-        return Response::json($response);
+        return response()->json($response);
     }
 
 
     /**
      * Update the specified bus.
      */
-    public function update($id, UpdateBusRequest $request)
+    public function updateById($id, UpdateBusRequest $request)
     {
+        $bus = Bus::where('id', $id)->first();
 
+        if($bus) {
+            if ($bus->token !== $request->token) {
 
-        $bus = Bus::findOrFail($id);
+                $response['status'] = false;
+                $response['errors'][] = 'Forbidden access';
+            } else {
 
-        if ($bus->token !== $request->token) return response()->json(['status' => '403', 'message' => 'Forbidden for save'], 403);
+                $bus->lon = $request->lon;
+                $bus->lat = $request->lat;
+                $bus->direction = $request->direction;
+                $bus->save();
 
-        $bus->lon = $request->lon;
-        $bus->lat = $request->lat;
-        $bus->direction = $request->direction;
+                $response['status'] = true;
+                $response['payload'] = [
+                    'lon' => $request->lon,
+                    'lat' => $request->lat,
+                    'direction' => $request->direction,
+                    'token' => $request->token
+                ];
+            }
+        } else {
+            $response['status'] = false;
+            $response['errors'][] = 'Not found';
+        }
 
-
-        $bus->save();
-
-        return response()->json(['saved' => true]);
+        return response()->json($response);
     }
 
 }

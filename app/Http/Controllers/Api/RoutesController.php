@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Route;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
 /**
  * @resource Routes
@@ -13,21 +14,22 @@ class RoutesController extends Controller
 
     public function __construct(){
 
-        $this->middleware('auth:api')
-            ->except('index','show','update');
+      //  $this->middleware('auth:api')
+        //    ->except('index','show','update');
     }
 
     /**
      * Display a listing of the routes.
      */
-    public function index()
+    public function getAll()
     {
+        $response['status'] = true;
 
         $routes = Route::with('stops')->get();
 
-        $routes = json_encode($routes, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE);
+        $response['data']['routes'] = $routes;
 
-        return response($routes);
+        return response()->json($response);
     }
 
 
@@ -36,28 +38,18 @@ class RoutesController extends Controller
      * Display the specified route
      */
 
-    public function show($id, $relation = false) {
+    public function getById($id) {
 
-        $route = Route::find($id);
+        $route = Route::where('id', $id)->first();
 
-        if($relation) {
-
-            if ($route[$relation] === null)  return response()->json(['status' => '400', 'message' => 'Tried accessing none existing relation'], 400);
-
-            $route = $route[$relation];
+        if($route) {
+            $response['status'] = true;
+            $response['data']['route'] = $route;
+        } else {
+            $response['status'] = false;
+            $response['errors'][] = 'Not found';
         }
-        $route = json_encode($route, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE);
 
-        return response($route);
+        return response()->json($route);
     }
-
-    public function getRouteByCountryCode() {
-
-    }
-
-    public function getRouteByCityId() {
-
-    }
-
-
 }

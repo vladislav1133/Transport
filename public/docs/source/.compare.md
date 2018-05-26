@@ -49,19 +49,88 @@ $.ajax(settings).done(function (response) {
 > Example response:
 
 ```json
-[
-    {
-        "id": 1,
-        "description_id": 1,
-        "route_id": 1,
-        "number": "289",
-        "direction": 1,
-        "lon": 36.266584,
-        "lat": 50.019612,
-        "created_at": "2017-11-02 06:35:09",
-        "updated_at": "2017-11-02 06:35:09"
+{
+    "status": true,
+    "data": {
+        "buses": [
+            {
+                "id": 1,
+                "description_id": 1,
+                "route_id": 1,
+                "number": "289",
+                "direction": 1,
+                "created_at": "2018-05-23 23:35:04",
+                "updated_at": "2018-05-23 23:35:04",
+                "description": {
+                    "id": 1,
+                    "type": "bus",
+                    "price": "4.0 UAH",
+                    "interval": "15-20",
+                    "work_time": "7:00-21:45",
+                    "created_at": "2018-05-23 23:35:03",
+                    "updated_at": "2018-05-23 23:35:03"
+                },
+                "route": {
+                    "id": 1,
+                    "city_id": 1,
+                    "distance": 2.88,
+                    "created_at": "2018-05-23 23:35:04",
+                    "updated_at": "2018-05-23 23:35:04"
+                }
+            },
+            {
+                "id": 2,
+                "description_id": 1,
+                "route_id": 1,
+                "number": "454f",
+                "direction": 1,
+                "created_at": "2018-05-23 23:49:32",
+                "updated_at": "2018-05-23 23:49:32",
+                "description": {
+                    "id": 1,
+                    "type": "bus",
+                    "price": "4.0 UAH",
+                    "interval": "15-20",
+                    "work_time": "7:00-21:45",
+                    "created_at": "2018-05-23 23:35:03",
+                    "updated_at": "2018-05-23 23:35:03"
+                },
+                "route": {
+                    "id": 1,
+                    "city_id": 1,
+                    "distance": 2.88,
+                    "created_at": "2018-05-23 23:35:04",
+                    "updated_at": "2018-05-23 23:35:04"
+                }
+            },
+            {
+                "id": 3,
+                "description_id": 1,
+                "route_id": 2,
+                "number": "453",
+                "direction": 1,
+                "created_at": "2018-05-23 23:52:45",
+                "updated_at": "2018-05-23 23:52:45",
+                "description": {
+                    "id": 1,
+                    "type": "bus",
+                    "price": "4.0 UAH",
+                    "interval": "15-20",
+                    "work_time": "7:00-21:45",
+                    "created_at": "2018-05-23 23:35:03",
+                    "updated_at": "2018-05-23 23:35:03"
+                },
+                "route": {
+                    "id": 2,
+                    "city_id": 1,
+                    "distance": 2,
+                    "created_at": "2018-05-23 23:51:00",
+                    "updated_at": "2018-05-23 23:51:00"
+                }
+            }
+        ]
     }
-]
+}
 ```
 
 ### HTTP Request
@@ -72,13 +141,13 @@ $.ajax(settings).done(function (response) {
 
 <!-- END_68c566ea3f815726c4768b79926a8234 -->
 
-<!-- START_1584a6395666a18e229a391d93b3c7e7 -->
+<!-- START_2308fae945047073ff20ab0db622d7ba -->
 ## Display the specified bus.
 
 > Example request:
 
 ```bash
-curl -X GET "http://localhost/api/v1/buses/{id}/{relation?}" \
+curl -X GET "http://localhost/api/v1/buses/{id}" \
 -H "Accept: application/json"
 ```
 
@@ -86,7 +155,7 @@ curl -X GET "http://localhost/api/v1/buses/{id}/{relation?}" \
 var settings = {
     "async": true,
     "crossDomain": true,
-    "url": "http://localhost/api/v1/buses/{id}/{relation?}",
+    "url": "http://localhost/api/v1/buses/{id}",
     "method": "GET",
     "headers": {
         "accept": "application/json"
@@ -102,25 +171,44 @@ $.ajax(settings).done(function (response) {
 
 ```json
 {
-    "id": 1,
-    "description_id": 1,
-    "route_id": 1,
-    "number": "289",
-    "direction": 1,
-    "lon": 36.266584,
-    "lat": 50.019612,
-    "created_at": "2017-11-02 06:35:09",
-    "updated_at": "2017-11-02 06:35:09"
+    "status": true,
+    "data": {
+        "bus": {
+            "id": 1,
+            "description_id": 1,
+            "route_id": 1,
+            "number": "289",
+            "direction": 1,
+            "created_at": "2018-05-23 23:35:04",
+            "updated_at": "2018-05-23 23:35:04",
+            "description": {
+                "id": 1,
+                "type": "bus",
+                "price": "4.0 UAH",
+                "interval": "15-20",
+                "work_time": "7:00-21:45",
+                "created_at": "2018-05-23 23:35:03",
+                "updated_at": "2018-05-23 23:35:03"
+            },
+            "route": {
+                "id": 1,
+                "city_id": 1,
+                "distance": 2.88,
+                "created_at": "2018-05-23 23:35:04",
+                "updated_at": "2018-05-23 23:35:04"
+            }
+        }
+    }
 }
 ```
 
 ### HTTP Request
-`GET api/v1/buses/{id}/{relation?}`
+`GET api/v1/buses/{id}`
 
-`HEAD api/v1/buses/{id}/{relation?}`
+`HEAD api/v1/buses/{id}`
 
 
-<!-- END_1584a6395666a18e229a391d93b3c7e7 -->
+<!-- END_2308fae945047073ff20ab0db622d7ba -->
 
 <!-- START_5fa0de796b4fb7b2b050a2b23e072eeb -->
 ## Update the specified bus.
@@ -174,6 +262,352 @@ Parameter | Type | Status | Description
 
 <!-- END_5fa0de796b4fb7b2b050a2b23e072eeb -->
 
+#Cities
+<!-- START_3ecd9bc5dd79621a37a857ab1e77061e -->
+## Display all routes for specified city
+
+> Example request:
+
+```bash
+curl -X GET "http://localhost/api/v1/cities/{id}/routes" \
+-H "Accept: application/json"
+```
+
+```javascript
+var settings = {
+    "async": true,
+    "crossDomain": true,
+    "url": "http://localhost/api/v1/cities/{id}/routes",
+    "method": "GET",
+    "headers": {
+        "accept": "application/json"
+    }
+}
+
+$.ajax(settings).done(function (response) {
+    console.log(response);
+});
+```
+
+> Example response:
+
+```json
+{
+    "status": true,
+    "data": {
+        "routes": [
+            {
+                "id": 1,
+                "city_id": 1,
+                "distance": 2.88,
+                "created_at": "2018-05-23 23:35:04",
+                "updated_at": "2018-05-23 23:35:04",
+                "stops": [
+                    {
+                        "id": 1,
+                        "name": "м. Пушкинская 2",
+                        "lon": 36.247834,
+                        "lat": 50.004178,
+                        "created_at": "2018-05-23 23:35:03",
+                        "updated_at": "2018-05-23 23:35:03",
+                        "pivot": {
+                            "route_id": 1,
+                            "stop_id": 1
+                        }
+                    },
+                    {
+                        "id": 2,
+                        "name": "ул. Студенческая",
+                        "lon": 36.251998,
+                        "lat": 50.00744,
+                        "created_at": "2018-05-23 23:35:03",
+                        "updated_at": "2018-05-23 23:35:03",
+                        "pivot": {
+                            "route_id": 1,
+                            "stop_id": 2
+                        }
+                    },
+                    {
+                        "id": 3,
+                        "name": "спуск Журавлёвский",
+                        "lon": 36.254763,
+                        "lat": 50.010589,
+                        "created_at": "2018-05-23 23:35:03",
+                        "updated_at": "2018-05-23 23:35:03",
+                        "pivot": {
+                            "route_id": 1,
+                            "stop_id": 3
+                        }
+                    },
+                    {
+                        "id": 4,
+                        "name": "Спорткомплекс",
+                        "lon": 36.259777,
+                        "lat": 50.015822,
+                        "created_at": "2018-05-23 23:35:03",
+                        "updated_at": "2018-05-23 23:35:03",
+                        "pivot": {
+                            "route_id": 1,
+                            "stop_id": 4
+                        }
+                    },
+                    {
+                        "id": 5,
+                        "name": "Институт прокуратуры",
+                        "lon": 36.2639,
+                        "lat": 50.018403,
+                        "created_at": "2018-05-23 23:35:03",
+                        "updated_at": "2018-05-23 23:35:03",
+                        "pivot": {
+                            "route_id": 1,
+                            "stop_id": 5
+                        }
+                    },
+                    {
+                        "id": 6,
+                        "name": "Факультет Мехатроники ТС ХНАДУ",
+                        "lon": 36.266584,
+                        "lat": 50.019612,
+                        "created_at": "2018-05-23 23:35:03",
+                        "updated_at": "2018-05-23 23:35:03",
+                        "pivot": {
+                            "route_id": 1,
+                            "stop_id": 6
+                        }
+                    },
+                    {
+                        "id": 7,
+                        "name": "13-е городское кладбище",
+                        "lon": 36.270597,
+                        "lat": 50.020892,
+                        "created_at": "2018-05-23 23:35:03",
+                        "updated_at": "2018-05-23 23:35:03",
+                        "pivot": {
+                            "route_id": 1,
+                            "stop_id": 7
+                        }
+                    }
+                ]
+            },
+            {
+                "id": 2,
+                "city_id": 1,
+                "distance": 2,
+                "created_at": "2018-05-23 23:51:00",
+                "updated_at": "2018-05-23 23:51:00",
+                "stops": [
+                    {
+                        "id": 4,
+                        "name": "Спорткомплекс",
+                        "lon": 36.259777,
+                        "lat": 50.015822,
+                        "created_at": "2018-05-23 23:35:03",
+                        "updated_at": "2018-05-23 23:35:03",
+                        "pivot": {
+                            "route_id": 2,
+                            "stop_id": 4
+                        }
+                    },
+                    {
+                        "id": 6,
+                        "name": "Факультет Мехатроники ТС ХНАДУ",
+                        "lon": 36.266584,
+                        "lat": 50.019612,
+                        "created_at": "2018-05-23 23:35:03",
+                        "updated_at": "2018-05-23 23:35:03",
+                        "pivot": {
+                            "route_id": 2,
+                            "stop_id": 6
+                        }
+                    }
+                ]
+            }
+        ]
+    }
+}
+```
+
+### HTTP Request
+`GET api/v1/cities/{id}/routes`
+
+`HEAD api/v1/cities/{id}/routes`
+
+
+<!-- END_3ecd9bc5dd79621a37a857ab1e77061e -->
+
+<!-- START_497921d9e50e0d4358dfa111d7809271 -->
+## Display all buses for specified city
+
+> Example request:
+
+```bash
+curl -X GET "http://localhost/api/v1/cities/{id}/buses" \
+-H "Accept: application/json"
+```
+
+```javascript
+var settings = {
+    "async": true,
+    "crossDomain": true,
+    "url": "http://localhost/api/v1/cities/{id}/buses",
+    "method": "GET",
+    "headers": {
+        "accept": "application/json"
+    }
+}
+
+$.ajax(settings).done(function (response) {
+    console.log(response);
+});
+```
+
+> Example response:
+
+```json
+{
+    "status": true,
+    "data": {
+        "buses": [
+            {
+                "id": 1,
+                "description_id": 1,
+                "route_id": 1,
+                "number": "289",
+                "direction": 1,
+                "created_at": "2018-05-23 23:35:04",
+                "updated_at": "2018-05-23 23:35:04"
+            },
+            {
+                "id": 2,
+                "description_id": 1,
+                "route_id": 1,
+                "number": "454f",
+                "direction": 1,
+                "created_at": "2018-05-23 23:49:32",
+                "updated_at": "2018-05-23 23:49:32"
+            },
+            {
+                "id": 3,
+                "description_id": 1,
+                "route_id": 2,
+                "number": "453",
+                "direction": 1,
+                "created_at": "2018-05-23 23:52:45",
+                "updated_at": "2018-05-23 23:52:45"
+            }
+        ]
+    }
+}
+```
+
+### HTTP Request
+`GET api/v1/cities/{id}/buses`
+
+`HEAD api/v1/cities/{id}/buses`
+
+
+<!-- END_497921d9e50e0d4358dfa111d7809271 -->
+
+#Countries
+<!-- START_835512460a11f84fe321495c11302183 -->
+## Display all available countries
+
+> Example request:
+
+```bash
+curl -X GET "http://localhost/api/v1/countries" \
+-H "Accept: application/json"
+```
+
+```javascript
+var settings = {
+    "async": true,
+    "crossDomain": true,
+    "url": "http://localhost/api/v1/countries",
+    "method": "GET",
+    "headers": {
+        "accept": "application/json"
+    }
+}
+
+$.ajax(settings).done(function (response) {
+    console.log(response);
+});
+```
+
+> Example response:
+
+```json
+{
+    "status": true,
+    "data": {
+        "countries": [
+            {
+                "id": 228,
+                "code": "UA",
+                "name": "Ukraine",
+                "available": 1,
+                "created_at": "2018-05-23 23:35:01",
+                "updated_at": "2018-05-23 23:35:01"
+            }
+        ]
+    }
+}
+```
+
+### HTTP Request
+`GET api/v1/countries`
+
+`HEAD api/v1/countries`
+
+
+<!-- END_835512460a11f84fe321495c11302183 -->
+
+<!-- START_7d99b50403f17c446463591cd33e2ab7 -->
+## Display all available cities for specified country
+
+> Example request:
+
+```bash
+curl -X GET "http://localhost/api/v1/countries/{code}/cities" \
+-H "Accept: application/json"
+```
+
+```javascript
+var settings = {
+    "async": true,
+    "crossDomain": true,
+    "url": "http://localhost/api/v1/countries/{code}/cities",
+    "method": "GET",
+    "headers": {
+        "accept": "application/json"
+    }
+}
+
+$.ajax(settings).done(function (response) {
+    console.log(response);
+});
+```
+
+> Example response:
+
+```json
+{
+    "status": false,
+    "errors": [
+        "Not Found"
+    ]
+}
+```
+
+### HTTP Request
+`GET api/v1/countries/{code}/cities`
+
+`HEAD api/v1/countries/{code}/cities`
+
+
+<!-- END_7d99b50403f17c446463591cd33e2ab7 -->
+
 #Routes
 <!-- START_e2f3d7fb3c463a6d8fc1fb3fa9f19e11 -->
 ## Display a listing of the routes.
@@ -204,100 +638,139 @@ $.ajax(settings).done(function (response) {
 > Example response:
 
 ```json
-[
-    {
-        "id": 1,
-        "distance": 2.88,
-        "created_at": "2017-11-02 06:35:09",
-        "updated_at": "2017-11-02 06:35:09",
-        "stops": [
+{
+    "status": true,
+    "data": {
+        "routes": [
             {
                 "id": 1,
-                "name": "м. Пушкинская 2",
-                "lon": 36.247834,
-                "lat": 50.004178,
-                "created_at": "2017-11-02 06:35:08",
-                "updated_at": "2017-11-02 06:35:08",
-                "pivot": {
-                    "route_id": 1,
-                    "stop_id": 1
-                }
+                "city_id": 1,
+                "distance": 2.88,
+                "created_at": "2018-05-23 23:35:04",
+                "updated_at": "2018-05-23 23:35:04",
+                "stops": [
+                    {
+                        "id": 1,
+                        "name": "м. Пушкинская 2",
+                        "lon": 36.247834,
+                        "lat": 50.004178,
+                        "created_at": "2018-05-23 23:35:03",
+                        "updated_at": "2018-05-23 23:35:03",
+                        "pivot": {
+                            "route_id": 1,
+                            "stop_id": 1
+                        }
+                    },
+                    {
+                        "id": 2,
+                        "name": "ул. Студенческая",
+                        "lon": 36.251998,
+                        "lat": 50.00744,
+                        "created_at": "2018-05-23 23:35:03",
+                        "updated_at": "2018-05-23 23:35:03",
+                        "pivot": {
+                            "route_id": 1,
+                            "stop_id": 2
+                        }
+                    },
+                    {
+                        "id": 3,
+                        "name": "спуск Журавлёвский",
+                        "lon": 36.254763,
+                        "lat": 50.010589,
+                        "created_at": "2018-05-23 23:35:03",
+                        "updated_at": "2018-05-23 23:35:03",
+                        "pivot": {
+                            "route_id": 1,
+                            "stop_id": 3
+                        }
+                    },
+                    {
+                        "id": 4,
+                        "name": "Спорткомплекс",
+                        "lon": 36.259777,
+                        "lat": 50.015822,
+                        "created_at": "2018-05-23 23:35:03",
+                        "updated_at": "2018-05-23 23:35:03",
+                        "pivot": {
+                            "route_id": 1,
+                            "stop_id": 4
+                        }
+                    },
+                    {
+                        "id": 5,
+                        "name": "Институт прокуратуры",
+                        "lon": 36.2639,
+                        "lat": 50.018403,
+                        "created_at": "2018-05-23 23:35:03",
+                        "updated_at": "2018-05-23 23:35:03",
+                        "pivot": {
+                            "route_id": 1,
+                            "stop_id": 5
+                        }
+                    },
+                    {
+                        "id": 6,
+                        "name": "Факультет Мехатроники ТС ХНАДУ",
+                        "lon": 36.266584,
+                        "lat": 50.019612,
+                        "created_at": "2018-05-23 23:35:03",
+                        "updated_at": "2018-05-23 23:35:03",
+                        "pivot": {
+                            "route_id": 1,
+                            "stop_id": 6
+                        }
+                    },
+                    {
+                        "id": 7,
+                        "name": "13-е городское кладбище",
+                        "lon": 36.270597,
+                        "lat": 50.020892,
+                        "created_at": "2018-05-23 23:35:03",
+                        "updated_at": "2018-05-23 23:35:03",
+                        "pivot": {
+                            "route_id": 1,
+                            "stop_id": 7
+                        }
+                    }
+                ]
             },
             {
                 "id": 2,
-                "name": "ул. Студенческая",
-                "lon": 36.251998,
-                "lat": 50.00744,
-                "created_at": "2017-11-02 06:35:08",
-                "updated_at": "2017-11-02 06:35:08",
-                "pivot": {
-                    "route_id": 1,
-                    "stop_id": 2
-                }
-            },
-            {
-                "id": 3,
-                "name": "спуск Журавлёвский",
-                "lon": 36.254763,
-                "lat": 50.010589,
-                "created_at": "2017-11-02 06:35:08",
-                "updated_at": "2017-11-02 06:35:08",
-                "pivot": {
-                    "route_id": 1,
-                    "stop_id": 3
-                }
-            },
-            {
-                "id": 4,
-                "name": "Спорткомплекс",
-                "lon": 36.259777,
-                "lat": 50.015822,
-                "created_at": "2017-11-02 06:35:09",
-                "updated_at": "2017-11-02 06:35:09",
-                "pivot": {
-                    "route_id": 1,
-                    "stop_id": 4
-                }
-            },
-            {
-                "id": 5,
-                "name": "Институт прокуратуры",
-                "lon": 36.2639,
-                "lat": 50.018403,
-                "created_at": "2017-11-02 06:35:09",
-                "updated_at": "2017-11-02 06:35:09",
-                "pivot": {
-                    "route_id": 1,
-                    "stop_id": 5
-                }
-            },
-            {
-                "id": 6,
-                "name": "Факультет Мехатроники ТС ХНАДУ",
-                "lon": 36.266584,
-                "lat": 50.019612,
-                "created_at": "2017-11-02 06:35:09",
-                "updated_at": "2017-11-02 06:35:09",
-                "pivot": {
-                    "route_id": 1,
-                    "stop_id": 6
-                }
-            },
-            {
-                "id": 7,
-                "name": "13-е городское кладбище",
-                "lon": 36.270597,
-                "lat": 50.020892,
-                "created_at": "2017-11-02 06:35:09",
-                "updated_at": "2017-11-02 06:35:09",
-                "pivot": {
-                    "route_id": 1,
-                    "stop_id": 7
-                }
+                "city_id": 1,
+                "distance": 2,
+                "created_at": "2018-05-23 23:51:00",
+                "updated_at": "2018-05-23 23:51:00",
+                "stops": [
+                    {
+                        "id": 4,
+                        "name": "Спорткомплекс",
+                        "lon": 36.259777,
+                        "lat": 50.015822,
+                        "created_at": "2018-05-23 23:35:03",
+                        "updated_at": "2018-05-23 23:35:03",
+                        "pivot": {
+                            "route_id": 2,
+                            "stop_id": 4
+                        }
+                    },
+                    {
+                        "id": 6,
+                        "name": "Факультет Мехатроники ТС ХНАДУ",
+                        "lon": 36.266584,
+                        "lat": 50.019612,
+                        "created_at": "2018-05-23 23:35:03",
+                        "updated_at": "2018-05-23 23:35:03",
+                        "pivot": {
+                            "route_id": 2,
+                            "stop_id": 6
+                        }
+                    }
+                ]
             }
         ]
     }
-]
+}
 ```
 
 ### HTTP Request
@@ -308,13 +781,13 @@ $.ajax(settings).done(function (response) {
 
 <!-- END_e2f3d7fb3c463a6d8fc1fb3fa9f19e11 -->
 
-<!-- START_b0188eb092324bfea8f844a439f91074 -->
-## Display the specified route.
+<!-- START_e73d089bbe423491becf7ec69ea105ef -->
+## Display the specified route
 
 > Example request:
 
 ```bash
-curl -X GET "http://localhost/api/v1/routes/{id}/{relation?}" \
+curl -X GET "http://localhost/api/v1/routes/{id}" \
 -H "Accept: application/json"
 ```
 
@@ -322,7 +795,7 @@ curl -X GET "http://localhost/api/v1/routes/{id}/{relation?}" \
 var settings = {
     "async": true,
     "crossDomain": true,
-    "url": "http://localhost/api/v1/routes/{id}/{relation?}",
+    "url": "http://localhost/api/v1/routes/{id}",
     "method": "GET",
     "headers": {
         "accept": "application/json"
@@ -339,19 +812,20 @@ $.ajax(settings).done(function (response) {
 ```json
 {
     "id": 1,
+    "city_id": 1,
     "distance": 2.88,
-    "created_at": "2017-11-02 06:35:09",
-    "updated_at": "2017-11-02 06:35:09"
+    "created_at": "2018-05-23 23:35:04",
+    "updated_at": "2018-05-23 23:35:04"
 }
 ```
 
 ### HTTP Request
-`GET api/v1/routes/{id}/{relation?}`
+`GET api/v1/routes/{id}`
 
-`HEAD api/v1/routes/{id}/{relation?}`
+`HEAD api/v1/routes/{id}`
 
 
-<!-- END_b0188eb092324bfea8f844a439f91074 -->
+<!-- END_e73d089bbe423491becf7ec69ea105ef -->
 
 #Stops
 <!-- START_7c200603bc9096fbd79a4a9df3df03dc -->
@@ -389,56 +863,56 @@ $.ajax(settings).done(function (response) {
         "name": "м. Пушкинская 2",
         "lon": 36.247834,
         "lat": 50.004178,
-        "created_at": "2017-11-02 06:35:08",
-        "updated_at": "2017-11-02 06:35:08"
+        "created_at": "2018-05-23 23:35:03",
+        "updated_at": "2018-05-23 23:35:03"
     },
     {
         "id": 2,
         "name": "ул. Студенческая",
         "lon": 36.251998,
         "lat": 50.00744,
-        "created_at": "2017-11-02 06:35:08",
-        "updated_at": "2017-11-02 06:35:08"
+        "created_at": "2018-05-23 23:35:03",
+        "updated_at": "2018-05-23 23:35:03"
     },
     {
         "id": 3,
         "name": "спуск Журавлёвский",
         "lon": 36.254763,
         "lat": 50.010589,
-        "created_at": "2017-11-02 06:35:08",
-        "updated_at": "2017-11-02 06:35:08"
+        "created_at": "2018-05-23 23:35:03",
+        "updated_at": "2018-05-23 23:35:03"
     },
     {
         "id": 4,
         "name": "Спорткомплекс",
         "lon": 36.259777,
         "lat": 50.015822,
-        "created_at": "2017-11-02 06:35:09",
-        "updated_at": "2017-11-02 06:35:09"
+        "created_at": "2018-05-23 23:35:03",
+        "updated_at": "2018-05-23 23:35:03"
     },
     {
         "id": 5,
         "name": "Институт прокуратуры",
         "lon": 36.2639,
         "lat": 50.018403,
-        "created_at": "2017-11-02 06:35:09",
-        "updated_at": "2017-11-02 06:35:09"
+        "created_at": "2018-05-23 23:35:03",
+        "updated_at": "2018-05-23 23:35:03"
     },
     {
         "id": 6,
         "name": "Факультет Мехатроники ТС ХНАДУ",
         "lon": 36.266584,
         "lat": 50.019612,
-        "created_at": "2017-11-02 06:35:09",
-        "updated_at": "2017-11-02 06:35:09"
+        "created_at": "2018-05-23 23:35:03",
+        "updated_at": "2018-05-23 23:35:03"
     },
     {
         "id": 7,
         "name": "13-е городское кладбище",
         "lon": 36.270597,
         "lat": 50.020892,
-        "created_at": "2017-11-02 06:35:09",
-        "updated_at": "2017-11-02 06:35:09"
+        "created_at": "2018-05-23 23:35:03",
+        "updated_at": "2018-05-23 23:35:03"
     }
 ]
 ```
@@ -452,7 +926,7 @@ $.ajax(settings).done(function (response) {
 <!-- END_7c200603bc9096fbd79a4a9df3df03dc -->
 
 <!-- START_40ecf63ab0e072eb290381940691abb0 -->
-## Display the nearest bus for user.
+## Display a nearest bus for user.
 
 > Example request:
 
@@ -488,386 +962,15 @@ $.ajax(settings).done(function (response) {
 
 ```json
 {
-    "message": "This action is unauthorized.",
-    "exception": "Symfony\\Component\\HttpKernel\\Exception\\AccessDeniedHttpException",
-    "file": "C:\\xampp\\htdocs\\STUDY\\Laravel\\transport\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Exceptions\\Handler.php",
-    "line": 201,
-    "trace": [
-        {
-            "file": "C:\\xampp\\htdocs\\STUDY\\Laravel\\transport\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Exceptions\\Handler.php",
-            "line": 175,
-            "function": "prepareException",
-            "class": "Illuminate\\Foundation\\Exceptions\\Handler",
-            "type": "->"
-        },
-        {
-            "file": "C:\\xampp\\htdocs\\STUDY\\Laravel\\transport\\app\\Exceptions\\Handler.php",
-            "line": 51,
-            "function": "render",
-            "class": "Illuminate\\Foundation\\Exceptions\\Handler",
-            "type": "->"
-        },
-        {
-            "file": "C:\\xampp\\htdocs\\STUDY\\Laravel\\transport\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Pipeline.php",
-            "line": 83,
-            "function": "render",
-            "class": "App\\Exceptions\\Handler",
-            "type": "->"
-        },
-        {
-            "file": "C:\\xampp\\htdocs\\STUDY\\Laravel\\transport\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Pipeline.php",
-            "line": 32,
-            "function": "handleException",
-            "class": "Illuminate\\Routing\\Pipeline",
-            "type": "->"
-        },
-        {
-            "file": "C:\\xampp\\htdocs\\STUDY\\Laravel\\transport\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Middleware\\SubstituteBindings.php",
-            "line": 41,
-            "function": "Illuminate\\Routing\\{closure}",
-            "class": "Illuminate\\Routing\\Pipeline",
-            "type": "->"
-        },
-        {
-            "file": "C:\\xampp\\htdocs\\STUDY\\Laravel\\transport\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php",
-            "line": 149,
-            "function": "handle",
-            "class": "Illuminate\\Routing\\Middleware\\SubstituteBindings",
-            "type": "->"
-        },
-        {
-            "file": "C:\\xampp\\htdocs\\STUDY\\Laravel\\transport\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Pipeline.php",
-            "line": 53,
-            "function": "Illuminate\\Pipeline\\{closure}",
-            "class": "Illuminate\\Pipeline\\Pipeline",
-            "type": "->"
-        },
-        {
-            "file": "C:\\xampp\\htdocs\\STUDY\\Laravel\\transport\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Middleware\\ThrottleRequests.php",
-            "line": 57,
-            "function": "Illuminate\\Routing\\{closure}",
-            "class": "Illuminate\\Routing\\Pipeline",
-            "type": "->"
-        },
-        {
-            "file": "C:\\xampp\\htdocs\\STUDY\\Laravel\\transport\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php",
-            "line": 149,
-            "function": "handle",
-            "class": "Illuminate\\Routing\\Middleware\\ThrottleRequests",
-            "type": "->"
-        },
-        {
-            "file": "C:\\xampp\\htdocs\\STUDY\\Laravel\\transport\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Pipeline.php",
-            "line": 53,
-            "function": "Illuminate\\Pipeline\\{closure}",
-            "class": "Illuminate\\Pipeline\\Pipeline",
-            "type": "->"
-        },
-        {
-            "file": "C:\\xampp\\htdocs\\STUDY\\Laravel\\transport\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php",
-            "line": 102,
-            "function": "Illuminate\\Routing\\{closure}",
-            "class": "Illuminate\\Routing\\Pipeline",
-            "type": "->"
-        },
-        {
-            "file": "C:\\xampp\\htdocs\\STUDY\\Laravel\\transport\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Router.php",
-            "line": 647,
-            "function": "then",
-            "class": "Illuminate\\Pipeline\\Pipeline",
-            "type": "->"
-        },
-        {
-            "file": "C:\\xampp\\htdocs\\STUDY\\Laravel\\transport\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Router.php",
-            "line": 622,
-            "function": "runRouteWithinStack",
-            "class": "Illuminate\\Routing\\Router",
-            "type": "->"
-        },
-        {
-            "file": "C:\\xampp\\htdocs\\STUDY\\Laravel\\transport\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Router.php",
-            "line": 588,
-            "function": "runRoute",
-            "class": "Illuminate\\Routing\\Router",
-            "type": "->"
-        },
-        {
-            "file": "C:\\xampp\\htdocs\\STUDY\\Laravel\\transport\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Router.php",
-            "line": 577,
-            "function": "dispatchToRoute",
-            "class": "Illuminate\\Routing\\Router",
-            "type": "->"
-        },
-        {
-            "file": "C:\\xampp\\htdocs\\STUDY\\Laravel\\transport\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Kernel.php",
-            "line": 176,
-            "function": "dispatch",
-            "class": "Illuminate\\Routing\\Router",
-            "type": "->"
-        },
-        {
-            "file": "C:\\xampp\\htdocs\\STUDY\\Laravel\\transport\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Pipeline.php",
-            "line": 30,
-            "function": "Illuminate\\Foundation\\Http\\{closure}",
-            "class": "Illuminate\\Foundation\\Http\\Kernel",
-            "type": "->"
-        },
-        {
-            "file": "C:\\xampp\\htdocs\\STUDY\\Laravel\\transport\\vendor\\fideloper\\proxy\\src\\TrustProxies.php",
-            "line": 56,
-            "function": "Illuminate\\Routing\\{closure}",
-            "class": "Illuminate\\Routing\\Pipeline",
-            "type": "->"
-        },
-        {
-            "file": "C:\\xampp\\htdocs\\STUDY\\Laravel\\transport\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php",
-            "line": 149,
-            "function": "handle",
-            "class": "Fideloper\\Proxy\\TrustProxies",
-            "type": "->"
-        },
-        {
-            "file": "C:\\xampp\\htdocs\\STUDY\\Laravel\\transport\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Pipeline.php",
-            "line": 53,
-            "function": "Illuminate\\Pipeline\\{closure}",
-            "class": "Illuminate\\Pipeline\\Pipeline",
-            "type": "->"
-        },
-        {
-            "file": "C:\\xampp\\htdocs\\STUDY\\Laravel\\transport\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest.php",
-            "line": 30,
-            "function": "Illuminate\\Routing\\{closure}",
-            "class": "Illuminate\\Routing\\Pipeline",
-            "type": "->"
-        },
-        {
-            "file": "C:\\xampp\\htdocs\\STUDY\\Laravel\\transport\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php",
-            "line": 149,
-            "function": "handle",
-            "class": "Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest",
-            "type": "->"
-        },
-        {
-            "file": "C:\\xampp\\htdocs\\STUDY\\Laravel\\transport\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Pipeline.php",
-            "line": 53,
-            "function": "Illuminate\\Pipeline\\{closure}",
-            "class": "Illuminate\\Pipeline\\Pipeline",
-            "type": "->"
-        },
-        {
-            "file": "C:\\xampp\\htdocs\\STUDY\\Laravel\\transport\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest.php",
-            "line": 30,
-            "function": "Illuminate\\Routing\\{closure}",
-            "class": "Illuminate\\Routing\\Pipeline",
-            "type": "->"
-        },
-        {
-            "file": "C:\\xampp\\htdocs\\STUDY\\Laravel\\transport\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php",
-            "line": 149,
-            "function": "handle",
-            "class": "Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest",
-            "type": "->"
-        },
-        {
-            "file": "C:\\xampp\\htdocs\\STUDY\\Laravel\\transport\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Pipeline.php",
-            "line": 53,
-            "function": "Illuminate\\Pipeline\\{closure}",
-            "class": "Illuminate\\Pipeline\\Pipeline",
-            "type": "->"
-        },
-        {
-            "file": "C:\\xampp\\htdocs\\STUDY\\Laravel\\transport\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Middleware\\ValidatePostSize.php",
-            "line": 27,
-            "function": "Illuminate\\Routing\\{closure}",
-            "class": "Illuminate\\Routing\\Pipeline",
-            "type": "->"
-        },
-        {
-            "file": "C:\\xampp\\htdocs\\STUDY\\Laravel\\transport\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php",
-            "line": 149,
-            "function": "handle",
-            "class": "Illuminate\\Foundation\\Http\\Middleware\\ValidatePostSize",
-            "type": "->"
-        },
-        {
-            "file": "C:\\xampp\\htdocs\\STUDY\\Laravel\\transport\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Pipeline.php",
-            "line": 53,
-            "function": "Illuminate\\Pipeline\\{closure}",
-            "class": "Illuminate\\Pipeline\\Pipeline",
-            "type": "->"
-        },
-        {
-            "file": "C:\\xampp\\htdocs\\STUDY\\Laravel\\transport\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Middleware\\CheckForMaintenanceMode.php",
-            "line": 46,
-            "function": "Illuminate\\Routing\\{closure}",
-            "class": "Illuminate\\Routing\\Pipeline",
-            "type": "->"
-        },
-        {
-            "file": "C:\\xampp\\htdocs\\STUDY\\Laravel\\transport\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php",
-            "line": 149,
-            "function": "handle",
-            "class": "Illuminate\\Foundation\\Http\\Middleware\\CheckForMaintenanceMode",
-            "type": "->"
-        },
-        {
-            "file": "C:\\xampp\\htdocs\\STUDY\\Laravel\\transport\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Pipeline.php",
-            "line": 53,
-            "function": "Illuminate\\Pipeline\\{closure}",
-            "class": "Illuminate\\Pipeline\\Pipeline",
-            "type": "->"
-        },
-        {
-            "file": "C:\\xampp\\htdocs\\STUDY\\Laravel\\transport\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php",
-            "line": 102,
-            "function": "Illuminate\\Routing\\{closure}",
-            "class": "Illuminate\\Routing\\Pipeline",
-            "type": "->"
-        },
-        {
-            "file": "C:\\xampp\\htdocs\\STUDY\\Laravel\\transport\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Kernel.php",
-            "line": 151,
-            "function": "then",
-            "class": "Illuminate\\Pipeline\\Pipeline",
-            "type": "->"
-        },
-        {
-            "file": "C:\\xampp\\htdocs\\STUDY\\Laravel\\transport\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Kernel.php",
-            "line": 116,
-            "function": "sendRequestThroughRouter",
-            "class": "Illuminate\\Foundation\\Http\\Kernel",
-            "type": "->"
-        },
-        {
-            "file": "C:\\xampp\\htdocs\\STUDY\\Laravel\\transport\\vendor\\mpociot\\laravel-apidoc-generator\\src\\Mpociot\\ApiDoc\\Generators\\LaravelGenerator.php",
-            "line": 116,
-            "function": "handle",
-            "class": "Illuminate\\Foundation\\Http\\Kernel",
-            "type": "->"
-        },
-        {
-            "file": "C:\\xampp\\htdocs\\STUDY\\Laravel\\transport\\vendor\\mpociot\\laravel-apidoc-generator\\src\\Mpociot\\ApiDoc\\Generators\\AbstractGenerator.php",
-            "line": 98,
-            "function": "callRoute",
-            "class": "Mpociot\\ApiDoc\\Generators\\LaravelGenerator",
-            "type": "->"
-        },
-        {
-            "file": "C:\\xampp\\htdocs\\STUDY\\Laravel\\transport\\vendor\\mpociot\\laravel-apidoc-generator\\src\\Mpociot\\ApiDoc\\Generators\\LaravelGenerator.php",
-            "line": 58,
-            "function": "getRouteResponse",
-            "class": "Mpociot\\ApiDoc\\Generators\\AbstractGenerator",
-            "type": "->"
-        },
-        {
-            "file": "C:\\xampp\\htdocs\\STUDY\\Laravel\\transport\\vendor\\mpociot\\laravel-apidoc-generator\\src\\Mpociot\\ApiDoc\\Commands\\GenerateDocumentation.php",
-            "line": 261,
-            "function": "processRoute",
-            "class": "Mpociot\\ApiDoc\\Generators\\LaravelGenerator",
-            "type": "->"
-        },
-        {
-            "file": "C:\\xampp\\htdocs\\STUDY\\Laravel\\transport\\vendor\\mpociot\\laravel-apidoc-generator\\src\\Mpociot\\ApiDoc\\Commands\\GenerateDocumentation.php",
-            "line": 83,
-            "function": "processLaravelRoutes",
-            "class": "Mpociot\\ApiDoc\\Commands\\GenerateDocumentation",
-            "type": "->"
-        },
-        {
-            "function": "handle",
-            "class": "Mpociot\\ApiDoc\\Commands\\GenerateDocumentation",
-            "type": "->"
-        },
-        {
-            "file": "C:\\xampp\\htdocs\\STUDY\\Laravel\\transport\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\BoundMethod.php",
-            "line": 29,
-            "function": "call_user_func_array"
-        },
-        {
-            "file": "C:\\xampp\\htdocs\\STUDY\\Laravel\\transport\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\BoundMethod.php",
-            "line": 87,
-            "function": "Illuminate\\Container\\{closure}",
-            "class": "Illuminate\\Container\\BoundMethod",
-            "type": "::"
-        },
-        {
-            "file": "C:\\xampp\\htdocs\\STUDY\\Laravel\\transport\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\BoundMethod.php",
-            "line": 31,
-            "function": "callBoundMethod",
-            "class": "Illuminate\\Container\\BoundMethod",
-            "type": "::"
-        },
-        {
-            "file": "C:\\xampp\\htdocs\\STUDY\\Laravel\\transport\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\Container.php",
-            "line": 549,
-            "function": "call",
-            "class": "Illuminate\\Container\\BoundMethod",
-            "type": "::"
-        },
-        {
-            "file": "C:\\xampp\\htdocs\\STUDY\\Laravel\\transport\\vendor\\laravel\\framework\\src\\Illuminate\\Console\\Command.php",
-            "line": 180,
-            "function": "call",
-            "class": "Illuminate\\Container\\Container",
-            "type": "->"
-        },
-        {
-            "file": "C:\\xampp\\htdocs\\STUDY\\Laravel\\transport\\vendor\\symfony\\console\\Command\\Command.php",
-            "line": 264,
-            "function": "execute",
-            "class": "Illuminate\\Console\\Command",
-            "type": "->"
-        },
-        {
-            "file": "C:\\xampp\\htdocs\\STUDY\\Laravel\\transport\\vendor\\laravel\\framework\\src\\Illuminate\\Console\\Command.php",
-            "line": 167,
-            "function": "run",
-            "class": "Symfony\\Component\\Console\\Command\\Command",
-            "type": "->"
-        },
-        {
-            "file": "C:\\xampp\\htdocs\\STUDY\\Laravel\\transport\\vendor\\symfony\\console\\Application.php",
-            "line": 888,
-            "function": "run",
-            "class": "Illuminate\\Console\\Command",
-            "type": "->"
-        },
-        {
-            "file": "C:\\xampp\\htdocs\\STUDY\\Laravel\\transport\\vendor\\symfony\\console\\Application.php",
-            "line": 224,
-            "function": "doRunCommand",
-            "class": "Symfony\\Component\\Console\\Application",
-            "type": "->"
-        },
-        {
-            "file": "C:\\xampp\\htdocs\\STUDY\\Laravel\\transport\\vendor\\symfony\\console\\Application.php",
-            "line": 125,
-            "function": "doRun",
-            "class": "Symfony\\Component\\Console\\Application",
-            "type": "->"
-        },
-        {
-            "file": "C:\\xampp\\htdocs\\STUDY\\Laravel\\transport\\vendor\\laravel\\framework\\src\\Illuminate\\Console\\Application.php",
-            "line": 88,
-            "function": "run",
-            "class": "Symfony\\Component\\Console\\Application",
-            "type": "->"
-        },
-        {
-            "file": "C:\\xampp\\htdocs\\STUDY\\Laravel\\transport\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php",
-            "line": 121,
-            "function": "run",
-            "class": "Illuminate\\Console\\Application",
-            "type": "->"
-        },
-        {
-            "file": "C:\\xampp\\htdocs\\STUDY\\Laravel\\transport\\artisan",
-            "line": 37,
-            "function": "handle",
-            "class": "Illuminate\\Foundation\\Console\\Kernel",
-            "type": "->"
-        }
-    ]
+    "message": "The given data was invalid.",
+    "errors": {
+        "lon": [
+            "The lon field is required."
+        ],
+        "lat": [
+            "The lat field is required."
+        ]
+    }
 }
 ```
 
@@ -885,13 +988,13 @@ Parameter | Type | Status | Description
 
 <!-- END_40ecf63ab0e072eb290381940691abb0 -->
 
-<!-- START_db23d066d586f867c4f114438c07b2b5 -->
+<!-- START_0bcfc82a06f321a919516fb4e2473c23 -->
 ## Display the specified stop.
 
 > Example request:
 
 ```bash
-curl -X GET "http://localhost/api/v1/stops/{id}/{relation?}" \
+curl -X GET "http://localhost/api/v1/stops/{id}" \
 -H "Accept: application/json"
 ```
 
@@ -899,7 +1002,7 @@ curl -X GET "http://localhost/api/v1/stops/{id}/{relation?}" \
 var settings = {
     "async": true,
     "crossDomain": true,
-    "url": "http://localhost/api/v1/stops/{id}/{relation?}",
+    "url": "http://localhost/api/v1/stops/{id}",
     "method": "GET",
     "headers": {
         "accept": "application/json"
@@ -915,20 +1018,25 @@ $.ajax(settings).done(function (response) {
 
 ```json
 {
-    "id": 1,
-    "name": "м. Пушкинская 2",
-    "lon": 36.247834,
-    "lat": 50.004178,
-    "created_at": "2017-11-02 06:35:08",
-    "updated_at": "2017-11-02 06:35:08"
+    "status": true,
+    "data": {
+        "stop": {
+            "id": 1,
+            "name": "м. Пушкинская 2",
+            "lon": 36.247834,
+            "lat": 50.004178,
+            "created_at": "2018-05-23 23:35:03",
+            "updated_at": "2018-05-23 23:35:03"
+        }
+    }
 }
 ```
 
 ### HTTP Request
-`GET api/v1/stops/{id}/{relation?}`
+`GET api/v1/stops/{id}`
 
-`HEAD api/v1/stops/{id}/{relation?}`
+`HEAD api/v1/stops/{id}`
 
 
-<!-- END_db23d066d586f867c4f114438c07b2b5 -->
+<!-- END_0bcfc82a06f321a919516fb4e2473c23 -->
 

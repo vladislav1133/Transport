@@ -23,20 +23,19 @@ Route::group(array('prefix' => 'v1', 'middleware' => []), function () {
 
     Route::get('buses','Api\BusesController@getAll');
     Route::get('buses/{id}','Api\BusesController@getById');
-  //  Route::put('buses/{id}','BusesController@update');
+    Route::put('buses/{id}','Api\BusesController@updateById');
 
-    Route::get('stops', 'StopsController@index');
-    Route::get('stops/nearestbus/{stopId}', 'StopsController@getNearestBus');
-    Route::get('stops/{id}', 'StopsController@show');
+    Route::get('stops', 'Api\StopsController@getAll');
+    Route::get('stops/nearestbus/{stopId}', 'Api\StopsController@getNearestBus');
+    Route::get('stops/{id}', 'Api\StopsController@getById');
 
 
-    Route::get('routes/','RoutesController@index');
-    Route::get('routes/{id}/{relation?}','RoutesController@show');
+    Route::get('routes/','Api\RoutesController@getAll');
+    Route::get('routes/{id}','Api\RoutesController@getById');
 
 
     Route::get('countries', 'Api\CountriesController@getAll');
     Route::get('countries/{code}/cities', 'Api\CountriesController@getCitiesByCode');
-    Route::get('countries/{code}/buses', 'Api\CountriesController@getCitiesByCode');
 
     Route::get('cities/{id}/routes', 'Api\CitiesController@getRoutesById');
     Route::get('cities/{id}/buses', 'Api\CitiesController@getBusesById');

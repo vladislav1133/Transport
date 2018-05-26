@@ -17,59 +17,60 @@ class StopsController extends Controller
     public function __construct()
     {
 
-        $this->middleware('auth:api')
-            ->only('update');
+       // $this->middleware('auth:api')
+       //     ->only('update');
     }
 
     /**
      * Display a listing of the stops.
      */
-    public function index()
+    public function getAll()
     {
+        $response['status'] = true;
 
         $stops = Stop::get();
 
-        $stops = json_encode($stops, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE);
+        $response['data']['stops'] = $stops;
 
-        return response($stops);
+        return response()->json($stops);
     }
 
     /**
      * Display the specified stop.
      */
-    public function show($id, $relation = false)
+    public function getById($id)
     {
+        $stop = Stop::where('id', $id)->first();
 
-        $stop = Stop::find($id);
-
-        if ($relation) {
-
-            if ($stop[$relation] === null) return response()->json(['status' => '400', 'message' => 'Tried accessing none existing relation'], 400);
-
-            $stop = $stop[$relation];
+        if ($stop) {
+            $response['status'] = true;
+            $response['data']['stop'] = $stop;
+        } else {
+            $response['status'] = false;
+            $response['errors'][] = 'Not Found';
         }
 
-        $stop = json_encode($stop, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE);
-
-        return response($stop);
+        return response()->json($response);
     }
 
     /**
-     * Display the nearest bus for user.
+     * Display a nearest bus for user.
      */
-    public function getNearestBus($neededStopId, GetNearestBusRequest $request)
+    public function getNearestBus($stopId, GetNearestBusRequest $request)
     {
         $lon = $request->lon;
         $lat = $request->lat;
 
-        $busesDistance = Stop::getBusesDistanceToUser($lon,$lat,$neededStopId);
+        $busesDistance = Stop::getBusesDistanceToUser($lon,$lat,$stopId);
 
-        $busesDistance = json_encode($busesDistance, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE);
+        $response['status'] = true;
+        $response['data']['busDistance'] = $busesDistance;
+        $response['payload'] = [
+            'lon' => $request->lon,
+            'lat' => $request->lat
+        ];
 
-        return response($busesDistance);
-
-
-
+        return response()->json($response);
     }
 
 
