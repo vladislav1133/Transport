@@ -13,7 +13,7 @@ class CreateDescriptionsTable extends Migration
      */
     public function up()
     {
-        Schema::create('descriptions', function (Blueprint $table) {
+        Schema::create('transport', function (Blueprint $table) {
             $table->increments('id');
 
             $table->string('type',30);

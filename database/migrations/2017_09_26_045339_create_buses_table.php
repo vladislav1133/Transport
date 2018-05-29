@@ -13,7 +13,7 @@ class CreateBusesTable extends Migration
      */
     public function up()
     {
-        Schema::create('buses', function (Blueprint $table) {
+        Schema::create('active_transport', function (Blueprint $table) {
             $table->increments('id');
 
             $table->integer('description_id')->unsigned()->nullable();
