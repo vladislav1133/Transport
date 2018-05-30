@@ -17,10 +17,10 @@ class TableRouteStopTable extends Migration
             $table->increments('id');
 
             $table->integer('route_id')->unsigned()->nullable();
-            $table->foreign('route_id')->references('id')->on('routes')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreign('route_id')->references('id')->on('routes')->onDelete('restrict')->onUpdate('cascade');
 
             $table->integer('stop_id')->unsigned()->nullable();
-            $table->foreign('stop_id')->references('id')->on('stops')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreign('stop_id')->references('id')->on('stops')->onDelete('restrict')->onUpdate('cascade');
         });
     }
 

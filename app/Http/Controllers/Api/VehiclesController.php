@@ -3,57 +3,56 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Requests\UpdateBusRequest;
+use App\Repositories\VehiclesRepository;
+use App\Vehicle;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
-use Response;
-use App\Bus;
-use App\Repositories\BusesRepository;
-
 /**
- * @resource Buses
+ * @resource Vehicles
  */
-class BusesController extends Controller
+class VehiclesController extends Controller
 {
 
-    private $busesRepository;
+    private $vehiclesRepository;
 
-    public function __construct(BusesRepository $busesRepository)
+    public function __construct(VehiclesRepository $vehiclesRepository)
     {
 
-        $this->busesRepository = $busesRepository;
-       // $this->middleware('auth:api');
-         //   ->except('index', 'show', 'update');
+        $this->vehiclesRepository = $vehiclesRepository;
+        // $this->middleware('auth:api');
+        //   ->except('index', 'show', 'update');
     }
 
     /**
-     * Display a listing of the buses.
+     * Display a listing of the vehicles.
      */
     public function getAll()
     {
         $response['status'] = true;
 
-        $buses = $this->busesRepository->getAll();
+        $vehicles = $this->vehiclesRepository->getAll();
 
-        $response['data']['buses'] = $buses;
 
-        return Response::json($response);
+        $response['data']['vehicles'] = $vehicles;
+
+        return response()->json($response);
     }
 
     /**
-     * Display the specified bus.
+     * Display the specified vehicle.
      *
      * @param $id
      * @return \Illuminate\Http\JsonResponse
      */
     public function getById($id)
     {
-        $bus = $this->busesRepository->getById($id);
+        $vehicle = $this->vehiclesRepository->getById($id);
 
-        if ($bus) {
+        if ($vehicle) {
 
             $response['status'] = true;
-            $response['data']['bus'] = $bus;
+            $response['data']['vehicle'] = $vehicle;
 
         } else {
             $response['status'] = false;
@@ -65,23 +64,23 @@ class BusesController extends Controller
 
 
     /**
-     * Update the specified bus.
+     * Update the specified vehicle.
      */
     public function updateById($id, UpdateBusRequest $request)
     {
-        $bus = Bus::where('id', $id)->first();
+        $vehicle = Vehicle::where('id', $id)->first();
 
-        if($bus) {
-            if ($bus->token !== $request->token) {
+        if ($vehicle) {
+            if ($vehicle->token !== $request->token) {
 
                 $response['status'] = false;
                 $response['errors'][] = 'Forbidden access';
             } else {
 
-                $bus->lon = $request->lon;
-                $bus->lat = $request->lat;
-                $bus->direction = $request->direction;
-                $bus->save();
+                $vehicle->lon = $request->lon;
+                $vehicle->lat = $request->lat;
+                $vehicle->direction = $request->direction;
+                $vehicle->save();
 
                 $response['status'] = true;
                 $response['payload'] = [

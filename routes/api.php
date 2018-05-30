@@ -21,9 +21,13 @@ use Illuminate\Http\Request;
 Route::group(array('prefix' => 'v1', 'middleware' => []), function () {
 
 
-    Route::get('buses','Api\BusesController@getAll');
-    Route::get('buses/{id}','Api\BusesController@getById');
-    Route::put('buses/{id}','Api\BusesController@updateById');
+    Route::get('vehicles',     'Api\VehiclesController@getAll');
+    Route::get('vehicles/{id}','Api\VehiclesController@getById');
+    Route::put('vehicles/{id}','Api\VehiclesController@updateById');
+
+    Route::get('transports','Api\TransportsController@getAll');
+    Route::get('transports/{id}','Api\TransportsController@getById');
+
 
     Route::get('stops', 'Api\StopsController@getAll');
     Route::get('stops/nearestbus/{stopId}', 'Api\StopsController@getNearestBus');
@@ -37,8 +41,9 @@ Route::group(array('prefix' => 'v1', 'middleware' => []), function () {
     Route::get('countries', 'Api\CountriesController@getAll');
     Route::get('countries/{code}/cities', 'Api\CountriesController@getCitiesByCode');
 
+    Route::get('cities/{id}/transports', 'Api\CitiesController@getTransportsById');
     Route::get('cities/{id}/routes', 'Api\CitiesController@getRoutesById');
-    Route::get('cities/{id}/buses', 'Api\CitiesController@getBusesById');
+
 });
 
 

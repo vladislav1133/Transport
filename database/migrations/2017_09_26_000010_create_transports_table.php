@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateDescriptionsTable extends Migration
+class CreateTransportsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,16 @@ class CreateDescriptionsTable extends Migration
      */
     public function up()
     {
-        Schema::create('descriptions', function (Blueprint $table) {
+        Schema::create('transports', function (Blueprint $table) {
             $table->increments('id');
+            $table->integer('route_id')->unsigned()->nullable();
+            $table->foreign('route_id')->references('id')->on('routes')->onDelete('restrict')->onUpdate('cascade');
 
             $table->string('type',30);
             $table->string('price',10);
             $table->string('interval',20);
             $table->string('work_time',20);
+
 
             $table->timestamps();
         });
@@ -32,6 +35,6 @@ class CreateDescriptionsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('descriptions');
+        Schema::dropIfExists('transports');
     }
 }

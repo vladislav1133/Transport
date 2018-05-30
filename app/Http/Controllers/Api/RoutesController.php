@@ -37,10 +37,9 @@ class RoutesController extends Controller
     /**
      * Display the specified route
      */
-
     public function getById($id) {
 
-        $route = Route::where('id', $id)->first();
+        $route = Route::with('stops')->where('id', $id)->first();
 
         if($route) {
             $response['status'] = true;

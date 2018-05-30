@@ -7,6 +7,7 @@ use App\City;
 use App\Route;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+
 /**
  * @resource Cities
  */
@@ -18,13 +19,14 @@ class CitiesController extends Controller
      * @param $id
      * @return \Illuminate\Http\JsonResponse
      */
-    public function getRoutesById($id) {
+    public function getRoutesById($id)
+    {
         $response['status'] = true;
         $response['data']['routes'] = [];
 
         $city = City::where('id', $id)->where('available', 1)->first();
 
-        if($city) {
+        if ($city) {
             $routes = Route::with('stops')->where('city_id', $city->id)->get();
 
             $response['data']['routes'] = $routes;
@@ -38,25 +40,18 @@ class CitiesController extends Controller
      * @param $id
      * @return \Illuminate\Http\JsonResponse
      */
-    public function getBusesById($id) {
+    public function getTransportsById($id)
+    {
         $response['status'] = true;
-        $response['data']['buses'] = [];
+        $response['data']['transports'] = [];
 
         $city = City::where('id', $id)->where('available', 1)->first();
 
-        if($city) {
-            $routesBuses = Route::with('buses')->where('city_id', $city->id)->get()
-                ->pluck('buses')->toArray();
+        if ($city) {
+            $routesTransports = Route::with('transports')->where('city_id', $city->id)->get()
+                ->pluck('transports')->toArray();
 
-            $buses = [];
-
-            foreach ($routesBuses as $busArray) {
-                foreach ($busArray as $bus) {
-                    array_push($buses, $bus);
-                }
-            }
-
-            $response['data']['buses'] = $buses;
+            $response['data']['transports'] = $routesTransports;
         }
 
         return response()->json($response);
