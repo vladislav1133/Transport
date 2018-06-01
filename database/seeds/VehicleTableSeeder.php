@@ -15,7 +15,6 @@ class VehicleTableSeeder extends Seeder
         Vehicle::truncate();
 
         Vehicle::create([
-            'number' => 289,
             'transport_id' => 1,
             'lat' => 50.004178,
             'lon' => 36.247834,
@@ -24,7 +23,6 @@ class VehicleTableSeeder extends Seeder
         ]);
 
         Vehicle::create([
-            'number' => 289,
             'transport_id' => 1,
             'lat' => 50.010589,
             'lon' => 36.254763,
@@ -33,7 +31,6 @@ class VehicleTableSeeder extends Seeder
         ]);
 
         Vehicle::create([
-            'number' => 289,
             'transport_id' => 1,
             'lat' => 50.019612,
             'lon' => 36.266584,

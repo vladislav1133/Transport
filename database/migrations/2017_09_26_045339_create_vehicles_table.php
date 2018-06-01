@@ -19,7 +19,6 @@ class CreateVehiclesTable extends Migration
             $table->integer('transport_id')->unsigned()->nullable();
             $table->foreign('transport_id')->references('id')->on('transports')->onDelete('restrict')->onUpdate('cascade');
 
-            $table->string('number',10);
             $table->integer('direction');
             $table->double('lon',15,8)->default(0);
             $table->double('lat',15,8)->default(0);

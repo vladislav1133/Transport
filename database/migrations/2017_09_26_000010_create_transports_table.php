@@ -18,6 +18,7 @@ class CreateTransportsTable extends Migration
             $table->integer('route_id')->unsigned()->nullable();
             $table->foreign('route_id')->references('id')->on('routes')->onDelete('restrict')->onUpdate('cascade');
 
+            $table->string('number',10);
             $table->string('type',30);
             $table->string('price',10);
             $table->string('interval',20);
