@@ -22,8 +22,9 @@ Route::group(array('prefix' => 'v1', 'middleware' => []), function () {
 
 
     Route::get('vehicles',     'Api\VehiclesController@getAll');
-    Route::get('vehicles/{id}','Api\VehiclesController@getById');
     Route::put('vehicles/{id}','Api\VehiclesController@updateById');
+    Route::get('vehicles/{id}','Api\VehiclesController@getById');
+
 
     Route::get('transports','Api\TransportsController@getAll');
     Route::get('transports/{id}','Api\TransportsController@getById');

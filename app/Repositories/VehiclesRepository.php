@@ -18,4 +18,13 @@ class VehiclesRepository {
 
         return $vehicles;
     }
+
+
+    public function updatePosition($vehicle, $request) {
+
+        $vehicle->lon = $request->lon;
+        $vehicle->lat = $request->lat;
+        $vehicle->direction = $request->direction;
+        return $vehicle->save();
+    }
 }

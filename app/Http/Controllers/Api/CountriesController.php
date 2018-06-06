@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\City;
 use App\Country;
+use App\Repositories\CountriesRepository;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -12,15 +13,23 @@ use App\Http\Controllers\Controller;
  */
 class CountriesController extends Controller
 {
+    private $countriesRepository;
+
+    public function __construct(CountriesRepository $countriesRepository)
+    {
+
+        $this->countriesRepository = $countriesRepository;
+    }
+
     /**
      * Display all available countries
      * @return \Illuminate\Http\JsonResponse
      */
     public function getAll()
     {
-        $countries = Country::where('available', 1)->get();
-
         $response['status'] = true;
+
+        $countries = Country::where('available', 1)->get();
 
         $response['data']['countries'] = $countries;
 
@@ -34,17 +43,11 @@ class CountriesController extends Controller
      */
     public function getCitiesByCode($code)
     {
-        $country = Country::where('available', 1)->where('code', $code)->first();
+        $response['status'] = true;
 
-        if ($country) {
-            $cities = City::where('country_id', $country->id)->where('available', 1)->get();
+        $cities = $this->countriesRepository->getCitiesByCode($code);
 
-            $response['status'] = true;
-            $response['data']['cities'] = $cities;
-        } else {
-            $response['status'] = false;
-            $response['errors'][] = 'Not Found';
-        }
+        $response['data']['cities'] = $cities;
 
         return response()->json($response);
     }

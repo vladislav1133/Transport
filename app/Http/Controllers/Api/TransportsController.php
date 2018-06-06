@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Api;
 
+use App\Repositories\TransportsRepository;
 use App\Transport;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -11,6 +12,13 @@ use App\Http\Controllers\Controller;
  */
 class TransportsController extends Controller
 {
+    private $transportsRepository;
+
+    public function __construct(TransportsRepository $transportsRepository)
+    {
+
+        $this->transportsRepository = $transportsRepository;
+    }
 
     /**
      * Display a listing of the transports.
@@ -18,11 +26,9 @@ class TransportsController extends Controller
     public function getAll()
     {
         $response['status'] = true;
+        $response['code'] = 200;
 
-      //  $vehicles = $this->vehiclesRepository->getAll();
-
-
-        $response['data']['transports'] = Transport::with(['vehicles'])->get();
+        $response['data']['transports'] = $this->transportsRepository->getAll();
 
         return response()->json($response);
     }
@@ -35,16 +41,19 @@ class TransportsController extends Controller
      */
     public function getById($id)
     {
-        $transport = Transport::with(['vehicles'])->where('id', $id)->first();
+        $response['status'] = true;
+        $response['code'] = 200;
+
+        $transport = $this->getById($id);
 
         if ($transport) {
 
-            $response['status'] = true;
             $response['data']['transport'] = $transport;
 
         } else {
             $response['status'] = false;
-            $response['errors'][] = 'Not found';
+            $response['code'] = 404;
+            $response['errors'][] = 'Transports not found';
         }
 
         return response()->json($response);

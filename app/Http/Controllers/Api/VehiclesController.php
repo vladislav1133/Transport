@@ -13,15 +13,11 @@ use App\Http\Controllers\Controller;
  */
 class VehiclesController extends Controller
 {
-
     private $vehiclesRepository;
 
     public function __construct(VehiclesRepository $vehiclesRepository)
     {
-
         $this->vehiclesRepository = $vehiclesRepository;
-        // $this->middleware('auth:api');
-        //   ->except('index', 'show', 'update');
     }
 
     /**
@@ -30,6 +26,7 @@ class VehiclesController extends Controller
     public function getAll()
     {
         $response['status'] = true;
+        $response['code'] = 200;
 
         $vehicles = $this->vehiclesRepository->getAll();
 
@@ -47,16 +44,19 @@ class VehiclesController extends Controller
      */
     public function getById($id)
     {
+        $response['status'] = true;
+        $response['status'] = 200;
+
         $vehicle = $this->vehiclesRepository->getById($id);
 
         if ($vehicle) {
 
-            $response['status'] = true;
             $response['data']['vehicle'] = $vehicle;
 
         } else {
             $response['status'] = false;
-            $response['errors'][] = 'Not found';
+            $response['code'] = 404;
+            $response['errors'][] = 'Vehicle not found';
         }
 
         return response()->json($response);
@@ -65,34 +65,35 @@ class VehiclesController extends Controller
 
     /**
      * Update the specified vehicle.
+     *
+     * @param $id
+     * @param UpdateBusRequest $request
+     * @return \Illuminate\Http\JsonResponse
      */
-    public function updateById($id, UpdateBusRequest $request)
+    public function updateById($id, UpdateBusRequest $request)//
     {
-        $vehicle = Vehicle::where('id', $id)->first();
+        $response['status'] = true;
+        $response['payload'] = $request->all();
+
+        $vehicle = $this->vehiclesRepository->getById($id);
 
         if ($vehicle) {
+
             if ($vehicle->token !== $request->token) {
 
                 $response['status'] = false;
+                $response['code'] = 403;
                 $response['errors'][] = 'Forbidden access';
             } else {
 
-                $vehicle->lon = $request->lon;
-                $vehicle->lat = $request->lat;
-                $vehicle->direction = $request->direction;
-                $vehicle->save();
 
-                $response['status'] = true;
-                $response['payload'] = [
-                    'lon' => $request->lon,
-                    'lat' => $request->lat,
-                    'direction' => $request->direction,
-                    'token' => $request->token
-                ];
+                $this->vehiclesRepository->updatePosition($vehicle, $request);
             }
         } else {
+
             $response['status'] = false;
-            $response['errors'][] = 'Not found';
+            $response['code'] = 404;
+            $response['errors'][] = 'Vehicle not found';
         }
 
         return response()->json($response);

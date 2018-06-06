@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Api;
 
+use App\Repositories\RoutesRepository;
 use App\Route;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -11,11 +12,12 @@ use App\Http\Controllers\Controller;
  */
 class RoutesController extends Controller
 {
+    private $routesRepository;
 
-    public function __construct(){
+    public function __construct(RoutesRepository $routesRepository)
+    {
 
-      //  $this->middleware('auth:api')
-        //    ->except('index','show','update');
+        $this->routesRepository = $routesRepository;
     }
 
     /**
@@ -24,29 +26,30 @@ class RoutesController extends Controller
     public function getAll()
     {
         $response['status'] = true;
+        $response['code'] = 200;
 
-        $routes = Route::with('stops')->get();
+        $routes = $this->routesRepository->getAll();
 
         $response['data']['routes'] = $routes;
 
         return response()->json($response);
     }
 
-
-
     /**
      * Display the specified route
      */
     public function getById($id) {
+        $response['status'] = true;
+        $response['code'] = 200;
 
-        $route = Route::with('stops')->where('id', $id)->first();
+        $route = $this->routesRepository->getById($id);
 
         if($route) {
-            $response['status'] = true;
+
             $response['data']['route'] = $route;
         } else {
             $response['status'] = false;
-            $response['errors'][] = 'Not found';
+            $response['errors'][] = 'Route not found';
         }
 
         return response()->json($route);

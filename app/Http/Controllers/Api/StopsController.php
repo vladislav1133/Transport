@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Requests\GetNearestBusRequest;
+use App\Repositories\StopsRepository;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -14,11 +15,12 @@ use App\Bus;
  */
 class StopsController extends Controller
 {
-    public function __construct()
+    private $stopsRepository;
+
+    public function __construct(StopsRepository $stopsRepository)
     {
 
-       // $this->middleware('auth:api')
-       //     ->only('update');
+        $this->stopsRepository = $stopsRepository;
     }
 
     /**
@@ -27,6 +29,7 @@ class StopsController extends Controller
     public function getAll()
     {
         $response['status'] = true;
+        $response['code'] = 200;
 
         $stops = Stop::get();
 
@@ -40,14 +43,17 @@ class StopsController extends Controller
      */
     public function getById($id)
     {
-        $stop = Stop::where('id', $id)->first();
+        $response['status'] = true;
+        $response['code'] = 200;
+
+        $stop = $this->stopsRepository->getById($id);
 
         if ($stop) {
-            $response['status'] = true;
+
             $response['data']['stop'] = $stop;
         } else {
             $response['status'] = false;
-            $response['errors'][] = 'Not Found';
+            $response['errors'][] = 'Stop not Found';
         }
 
         return response()->json($response);

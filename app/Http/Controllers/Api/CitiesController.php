@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Bus;
 use App\City;
+use App\Repositories\CitiesRepository;
 use App\Route;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -13,6 +14,13 @@ use App\Http\Controllers\Controller;
  */
 class CitiesController extends Controller
 {
+    private $citiesRepository;
+
+    public function __construct(CitiesRepository $citiesRepository)
+    {
+
+        $this->citiesRepository = $citiesRepository;
+    }
 
     /**
      * Display all routes for specified city
@@ -22,15 +30,11 @@ class CitiesController extends Controller
     public function getRoutesById($id)
     {
         $response['status'] = true;
-        $response['data']['routes'] = [];
 
-        $city = City::where('id', $id)->where('available', 1)->first();
+        $routes = $this->citiesRepository->getRoutesById($id);
 
-        if ($city) {
-            $routes = Route::with('stops')->where('city_id', $city->id)->get();
+        $response['data']['routes'] = $routes;
 
-            $response['data']['routes'] = $routes;
-        }
 
         return response()->json($response);
     }
@@ -43,16 +47,10 @@ class CitiesController extends Controller
     public function getTransportsById($id)
     {
         $response['status'] = true;
-        $response['data']['transports'] = [];
 
-        $city = City::where('id', $id)->where('available', 1)->first();
+        $transports = $this->citiesRepository->getTransportsById($id);
 
-        if ($city) {
-            $routesTransports = Route::with('transports')->where('city_id', $city->id)->get()
-                ->pluck('transports')->toArray();
-
-            $response['data']['transports'] = $routesTransports;
-        }
+        $response['data']['transports'] = $transports;
 
         return response()->json($response);
     }
