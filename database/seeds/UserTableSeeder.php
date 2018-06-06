@@ -8,6 +8,8 @@ class UserTableSeeder extends Seeder
 
     public function run()
     {
+        User::truncate();
+
         User::create([
             'name' => 'vladislav1133',
             'email' => 'vladislav1133@ukr.net',

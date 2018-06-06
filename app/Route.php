@@ -12,8 +12,8 @@ class Route extends Model
         return $this->belongsToMany('App\Stop');
     }
 
-    public function buses(){
+    public function transports(){
 
-        return $this->hasMany('App\Bus');
+        return $this->hasMany('App\Transport');
     }
 }
