@@ -30,6 +30,7 @@ class CitiesController extends Controller
     public function getRoutesById($id)
     {
         $response['status'] = true;
+        $response['code'] = 200;
 
         $routes = $this->citiesRepository->getRoutesById($id);
 
@@ -47,6 +48,7 @@ class CitiesController extends Controller
     public function getTransportsById($id)
     {
         $response['status'] = true;
+        $response['code'] = 200;
 
         $transports = $this->citiesRepository->getTransportsById($id);
 

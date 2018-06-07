@@ -48,10 +48,11 @@ class RoutesController extends Controller
 
             $response['data']['route'] = $route;
         } else {
+
             $response['status'] = false;
             $response['errors'][] = 'Route not found';
         }
 
-        return response()->json($route);
+        return response()->json($response);
     }
 }

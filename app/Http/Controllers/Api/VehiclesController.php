@@ -45,7 +45,7 @@ class VehiclesController extends Controller
     public function getById($id)
     {
         $response['status'] = true;
-        $response['status'] = 200;
+        $response['code'] = 200;
 
         $vehicle = $this->vehiclesRepository->getById($id);
 

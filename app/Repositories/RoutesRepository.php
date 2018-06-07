@@ -16,8 +16,8 @@ class RoutesRepository
 
     public function getById($id) {
 
-        $vehicles = City::where('id', $id)->where('available', 1)->first();
+        $route = Route::where('id', $id)->first();
 
-        return $vehicles;
+        return $route;
     }
 }

@@ -31,11 +31,11 @@ class StopsController extends Controller
         $response['status'] = true;
         $response['code'] = 200;
 
-        $stops = Stop::get();
+        $stops = $this->stopsRepository->getAll();
 
         $response['data']['stops'] = $stops;
 
-        return response()->json($stops);
+        return response()->json($response);
     }
 
     /**

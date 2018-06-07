@@ -28,8 +28,9 @@ class CountriesController extends Controller
     public function getAll()
     {
         $response['status'] = true;
+        $response['code'] = 200;
 
-        $countries = Country::where('available', 1)->get();
+        $countries = $this->countriesRepository->getAll();
 
         $response['data']['countries'] = $countries;
 
@@ -44,10 +45,21 @@ class CountriesController extends Controller
     public function getCitiesByCode($code)
     {
         $response['status'] = true;
+        $response['code'] = 200;
 
-        $cities = $this->countriesRepository->getCitiesByCode($code);
+        $country = $this->countriesRepository->getByCode($code);
 
-        $response['data']['cities'] = $cities;
+        if($country) {
+
+            $cities = $this->countriesRepository->getCitiesByCode($code);
+
+            $response['data']['cities'] = $cities;
+        } else {
+
+            $response['status'] = false;
+            $response['code'] = 404;
+        }
+
 
         return response()->json($response);
     }

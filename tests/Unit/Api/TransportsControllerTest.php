@@ -8,15 +8,13 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 use App\Stop;
 use App\Route;
 
-class CitiesControllerTest extends TestCase
+class TransportsControllerTest extends TestCase
 {
-    public function testGetAllTransports()
-    {
+    public function testGetAll() {
 
-        $response = json_decode($this->json('GET', '/api/v1/cities/1/transports')->getContent());
+        $response = json_decode($this->json('GET', '/api/v1/transports')->getContent());
 
         try {
-
             $this->assertEquals(200, $response->code);
             $this->assertEquals(true, $response->status);
             $this->assertEquals(1, count($response->data->transports));
@@ -26,20 +24,17 @@ class CitiesControllerTest extends TestCase
             echo $exception->getMessage();
 
             $this->assertTrue(false);
-
         }
     }
 
-    public function testGetAllRoutes()
-    {
+    public function testGetById() {
 
-        $response = json_decode($this->json('GET', '/api/v1/cities/1/routes')->getContent());
+        $response = json_decode($this->json('GET', '/api/v1/transports/1')->getContent());
 
         try {
-
             $this->assertEquals(200, $response->code);
             $this->assertEquals(true, $response->status);
-            $this->assertEquals(1, count($response->data->routes));
+            $this->assertEquals(1, $response->data->transport->id);
 
         } catch (\Exception $exception) {
 
@@ -47,7 +42,5 @@ class CitiesControllerTest extends TestCase
 
             $this->assertTrue(false);
         }
-
-
     }
 }

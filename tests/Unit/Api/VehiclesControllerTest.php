@@ -8,38 +8,33 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 use App\Stop;
 use App\Route;
 
-class CitiesControllerTest extends TestCase
+class VehiclesControllerTest extends TestCase
 {
-    public function testGetAllTransports()
-    {
+    public function testGetAll() {
 
-        $response = json_decode($this->json('GET', '/api/v1/cities/1/transports')->getContent());
+        $response = json_decode($this->json('GET', '/api/v1/vehicles')->getContent());
 
         try {
-
             $this->assertEquals(200, $response->code);
             $this->assertEquals(true, $response->status);
-            $this->assertEquals(1, count($response->data->transports));
+            $this->assertEquals(3, count($response->data->vehicles));
 
         } catch (\Exception $exception) {
 
             echo $exception->getMessage();
 
             $this->assertTrue(false);
-
         }
     }
 
-    public function testGetAllRoutes()
-    {
+    public function testGetById() {
 
-        $response = json_decode($this->json('GET', '/api/v1/cities/1/routes')->getContent());
+        $response = json_decode($this->json('GET', '/api/v1/vehicles/1')->getContent());
 
         try {
-
             $this->assertEquals(200, $response->code);
             $this->assertEquals(true, $response->status);
-            $this->assertEquals(1, count($response->data->routes));
+            $this->assertEquals(1, $response->data->vehicle->id);
 
         } catch (\Exception $exception) {
 
@@ -47,7 +42,5 @@ class CitiesControllerTest extends TestCase
 
             $this->assertTrue(false);
         }
-
-
     }
 }

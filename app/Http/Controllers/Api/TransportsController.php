@@ -44,7 +44,7 @@ class TransportsController extends Controller
         $response['status'] = true;
         $response['code'] = 200;
 
-        $transport = $this->getById($id);
+        $transport = $this->transportsRepository->getById($id);
 
         if ($transport) {
 

@@ -16,10 +16,25 @@ class CountriesRepository
         return $countries;
     }
 
-    public function getById($id) {
+    public function getByCode($code) {
 
-        $route = Route::with('stops')->where('id', $id)->first();
+        $country = Country::where('code', $code)->first();
 
-        return $route;
+        return $country;
     }
+    public function getCitiesByCode($code) {
+
+        $cities = [];
+
+        $country = Country::where('code', $code)->first();
+
+        if($country) {
+
+            $cities = City::where('country_id', $country->id)->get();
+        }
+
+        return $cities;
+    }
+
+
 }
