@@ -13,16 +13,16 @@ class CreateTransportsTable extends Migration
      */
     public function up()
     {
-        Schema::create('transports', function (Blueprint $table) {
-            $table->increments('id');
-            $table->integer('route_id')->unsigned()->nullable();
-            $table->foreign('route_id')->references('id')->on('routes')->onDelete('restrict')->onUpdate('cascade');
+        Schema::create("transports", function (Blueprint $table) {
+            $table->increments("id");
+            $table->integer("route_id")->unsigned()->nullable();
+            $table->foreign("route_id")->references("id")->on("routes")->onDelete("restrict")->onUpdate("cascade");
 
-            $table->string('number',10);
-            $table->string('type',30);
-            $table->string('price',10);
-            $table->string('interval',20);
-            $table->string('work_time',20);
+            $table->string("number",10);
+            $table->string("type",30);
+            $table->string("price",10);
+            $table->string("interval",20);
+            $table->string("work_time",20);
 
 
             $table->timestamps();
@@ -36,6 +36,6 @@ class CreateTransportsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('transports');
+        Schema::dropIfExists("transports");
     }
 }

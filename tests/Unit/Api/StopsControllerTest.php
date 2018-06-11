@@ -45,4 +45,11 @@ class StopsControllerTest extends TestCase
             $this->assertTrue(false);
         }
     }
+
+//    public function testGetNearestVehicle() {
+//
+//        //stops/{stopId}/nearest
+//
+//        $response = json_decode($this->json("GET", "stops/{stopId}/nearest")->getContent());
+//    }
 }

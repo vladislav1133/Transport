@@ -14,11 +14,11 @@ class RouteTableSeeder extends Seeder
      */
     public function run() {
 
-        $city = City::where('name', 'Kharkiv')->first();
+        $city = City::where("name", "Kharkiv")->first();
 
         Route::create([
-            'distance' => 2.88,
-            'city_id' => $city->id
+            "distance" => 2.88,
+            "city_id" => $city->id
         ]);
 
         $route = Route::find(1);

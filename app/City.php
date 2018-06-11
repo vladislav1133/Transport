@@ -9,6 +9,6 @@ class City extends Model
 
     public function routes()
     {
-        return $this->hasMany('App\Route');
+        return $this->hasMany("App\Route");
     }
 }

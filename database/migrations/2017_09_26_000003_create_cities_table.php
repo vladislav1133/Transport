@@ -13,12 +13,12 @@ class CreateCitiesTable extends Migration
      */
     public function up()
     {
-        Schema::create('cities', function (Blueprint $table) {
-            $table->increments('id');
-            $table->integer('country_id')->unsigned()->nullable();
-            $table->foreign('country_id')->references('id')->on('countries')->onDelete('restrict')->onUpdate('cascade');
-            $table->string('name', 100);
-            $table->tinyInteger('available');
+        Schema::create("cities", function (Blueprint $table) {
+            $table->increments("id");
+            $table->integer("country_id")->unsigned()->nullable();
+            $table->foreign("country_id")->references("id")->on("countries")->onDelete("restrict")->onUpdate("cascade");
+            $table->string("name", 100);
+            $table->tinyInteger("available");
             $table->timestamps();
         });
     }
@@ -30,6 +30,6 @@ class CreateCitiesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('cities');
+        Schema::dropIfExists("cities");
     }
 }

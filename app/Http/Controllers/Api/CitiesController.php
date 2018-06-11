@@ -29,12 +29,12 @@ class CitiesController extends Controller
      */
     public function getRoutesById($id)
     {
-        $response['status'] = true;
-        $response['code'] = 200;
+        $response["status"] = true;
+        $response["code"] = 200;
 
         $routes = $this->citiesRepository->getRoutesById($id);
 
-        $response['data']['routes'] = $routes;
+        $response["data"]["routes"] = $routes;
 
 
         return response()->json($response);
@@ -47,12 +47,12 @@ class CitiesController extends Controller
      */
     public function getTransportsById($id)
     {
-        $response['status'] = true;
-        $response['code'] = 200;
+        $response["status"] = true;
+        $response["code"] = 200;
 
         $transports = $this->citiesRepository->getTransportsById($id);
 
-        $response['data']['transports'] = $transports;
+        $response["data"]["transports"] = $transports;
 
         return response()->json($response);
     }

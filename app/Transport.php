@@ -8,6 +8,6 @@ class Transport extends Model
 {
     public function vehicles() {
 
-        return $this->hasMany('App\Vehicle');
+        return $this->hasMany("App\Vehicle");
     }
 }

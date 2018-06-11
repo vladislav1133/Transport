@@ -25,13 +25,13 @@ class VehiclesController extends Controller
      */
     public function getAll()
     {
-        $response['status'] = true;
-        $response['code'] = 200;
+        $response["status"] = true;
+        $response["code"] = 200;
 
         $vehicles = $this->vehiclesRepository->getAll();
 
 
-        $response['data']['vehicles'] = $vehicles;
+        $response["data"]["vehicles"] = $vehicles;
 
         return response()->json($response);
     }
@@ -44,19 +44,19 @@ class VehiclesController extends Controller
      */
     public function getById($id)
     {
-        $response['status'] = true;
-        $response['code'] = 200;
+        $response["status"] = true;
+        $response["code"] = 200;
 
         $vehicle = $this->vehiclesRepository->getById($id);
 
         if ($vehicle) {
 
-            $response['data']['vehicle'] = $vehicle;
+            $response["data"]["vehicle"] = $vehicle;
 
         } else {
-            $response['status'] = false;
-            $response['code'] = 404;
-            $response['errors'][] = 'Vehicle not found';
+            $response["status"] = false;
+            $response["code"] = 404;
+            $response["errors"][] = "Vehicle not found";
         }
 
         return response()->json($response);
@@ -72,8 +72,9 @@ class VehiclesController extends Controller
      */
     public function updateById($id, UpdateBusRequest $request)//
     {
-        $response['status'] = true;
-        $response['payload'] = $request->all();
+        $response["status"] = true;
+        $response["code"] = 200;
+        $response["payload"] = $request->all();
 
         $vehicle = $this->vehiclesRepository->getById($id);
 
@@ -81,9 +82,9 @@ class VehiclesController extends Controller
 
             if ($vehicle->token !== $request->token) {
 
-                $response['status'] = false;
-                $response['code'] = 403;
-                $response['errors'][] = 'Forbidden access';
+                $response["status"] = false;
+                $response["code"] = 403;
+                $response["errors"][] = "Forbidden access";
             } else {
 
 
@@ -91,9 +92,9 @@ class VehiclesController extends Controller
             }
         } else {
 
-            $response['status'] = false;
-            $response['code'] = 404;
-            $response['errors'][] = 'Vehicle not found';
+            $response["status"] = false;
+            $response["code"] = 404;
+            $response["errors"][] = "Vehicle not found";
         }
 
         return response()->json($response);

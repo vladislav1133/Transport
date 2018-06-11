@@ -9,11 +9,11 @@ class Route extends Model
 
     public function stops(){
 
-        return $this->belongsToMany('App\Stop');
+        return $this->belongsToMany("App\Stop");
     }
 
     public function transports(){
 
-        return $this->hasMany('App\Transport');
+        return $this->hasMany("App\Transport");
     }
 }

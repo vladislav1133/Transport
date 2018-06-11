@@ -14,12 +14,12 @@ class CityTableSeeder extends Seeder
      */
     public function run()
     {
-        $ukraine = Country::where('code', 'UA')->first();
+        $ukraine = Country::where("code", "UA")->first();
 
         City::create([
-            'country_id' => $ukraine->id,
-            'name' => 'Kharkiv',
-            'available' => 1
+            "country_id" => $ukraine->id,
+            "name" => "Kharkiv",
+            "available" => 1
         ]);
     }
 }

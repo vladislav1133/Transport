@@ -14,7 +14,7 @@ class VehiclesRepository {
 
     public function getById($id) {
 
-        $vehicles = Vehicle::where('id', $id)->first();
+        $vehicles = Vehicle::where("id", $id)->first();
 
         return $vehicles;
     }
@@ -25,6 +25,7 @@ class VehiclesRepository {
         $vehicle->lon = $request->lon;
         $vehicle->lat = $request->lat;
         $vehicle->direction = $request->direction;
+        $vehicle->available = $request->available;
         return $vehicle->save();
     }
 }

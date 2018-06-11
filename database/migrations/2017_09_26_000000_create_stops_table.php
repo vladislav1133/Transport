@@ -13,12 +13,12 @@ class CreateStopsTable extends Migration
      */
     public function up()
     {
-        Schema::create('stops', function (Blueprint $table) {
-            $table->increments('id');
+        Schema::create("stops", function (Blueprint $table) {
+            $table->increments("id");
 
-            $table->string('name',50);
-            $table->double('lon',15,8);
-            $table->double('lat',15,8);
+            $table->string("name",50);
+            $table->double("lon",15,8);
+            $table->double("lat",15,8);
             $table->timestamps();
         });
     }
@@ -30,6 +30,6 @@ class CreateStopsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('stops');
+        Schema::dropIfExists("stops");
     }
 }

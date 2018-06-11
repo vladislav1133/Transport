@@ -25,12 +25,12 @@ class RoutesController extends Controller
      */
     public function getAll()
     {
-        $response['status'] = true;
-        $response['code'] = 200;
+        $response["status"] = true;
+        $response["code"] = 200;
 
         $routes = $this->routesRepository->getAll();
 
-        $response['data']['routes'] = $routes;
+        $response["data"]["routes"] = $routes;
 
         return response()->json($response);
     }
@@ -39,18 +39,18 @@ class RoutesController extends Controller
      * Display the specified route
      */
     public function getById($id) {
-        $response['status'] = true;
-        $response['code'] = 200;
+        $response["status"] = true;
+        $response["code"] = 200;
 
         $route = $this->routesRepository->getById($id);
 
         if($route) {
 
-            $response['data']['route'] = $route;
+            $response["data"]["route"] = $route;
         } else {
 
-            $response['status'] = false;
-            $response['errors'][] = 'Route not found';
+            $response["status"] = false;
+            $response["errors"][] = "Route not found";
         }
 
         return response()->json($response);

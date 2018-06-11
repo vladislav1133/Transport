@@ -11,14 +11,14 @@ class CountriesRepository
 {
     public function getAll() {
 
-        $countries = Country::where('available', 1)->get();
+        $countries = Country::where("available", 1)->get();
 
         return $countries;
     }
 
     public function getByCode($code) {
 
-        $country = Country::where('code', $code)->first();
+        $country = Country::where("code", $code)->first();
 
         return $country;
     }
@@ -26,11 +26,11 @@ class CountriesRepository
 
         $cities = [];
 
-        $country = Country::where('code', $code)->first();
+        $country = Country::where("code", $code)->first();
 
         if($country) {
 
-            $cities = City::where('country_id', $country->id)->get();
+            $cities = City::where("country_id", $country->id)->get();
         }
 
         return $cities;

@@ -27,6 +27,7 @@ class UpdateBusRequest extends FormRequest
             'lon' => 'required|numeric|min:0',
             'lat' => 'required|numeric|min:0',
             'direction' => 'required|numeric|between:0,1',
+            'available' => 'numeric|between:0,1',
             'token' => 'required'
         ];
     }

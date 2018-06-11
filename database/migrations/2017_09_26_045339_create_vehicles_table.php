@@ -13,16 +13,17 @@ class CreateVehiclesTable extends Migration
      */
     public function up()
     {
-        Schema::create('vehicles', function (Blueprint $table) {
-            $table->increments('id');
+        Schema::create("vehicles", function (Blueprint $table) {
+            $table->increments("id");
 
-            $table->integer('transport_id')->unsigned()->nullable();
-            $table->foreign('transport_id')->references('id')->on('transports')->onDelete('restrict')->onUpdate('cascade');
+            $table->integer("transport_id")->unsigned()->nullable();
+            $table->foreign("transport_id")->references("id")->on("transports")->onDelete("restrict")->onUpdate("cascade");
 
-            $table->integer('direction');
-            $table->double('lon',15,8)->default(0);
-            $table->double('lat',15,8)->default(0);
-            $table->string('token');
+            $table->tinyInteger("direction");
+            $table->tinyInteger("available")->default(0);
+            $table->double("lon",15,8)->default(0);
+            $table->double("lat",15,8)->default(0);
+            $table->string("token");
 
             $table->timestamps();
         });
@@ -35,6 +36,6 @@ class CreateVehiclesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('vehicles');
+        Schema::dropIfExists("vehicles");
     }
 }

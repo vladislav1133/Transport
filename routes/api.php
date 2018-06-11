@@ -31,7 +31,7 @@ Route::group(array('prefix' => 'v1', 'middleware' => []), function () {
 
 
     Route::get('stops', 'Api\StopsController@getAll');
-    Route::get('stops/nearestbus/{stopId}', 'Api\StopsController@getNearestBus');
+    Route::get('stops/{stopId}/nearest', 'Api\StopsController@getNearestBus');
     Route::get('stops/{id}', 'Api\StopsController@getById');
 
 

@@ -27,12 +27,12 @@ class CountriesController extends Controller
      */
     public function getAll()
     {
-        $response['status'] = true;
-        $response['code'] = 200;
+        $response["status"] = true;
+        $response["code"] = 200;
 
         $countries = $this->countriesRepository->getAll();
 
-        $response['data']['countries'] = $countries;
+        $response["data"]["countries"] = $countries;
 
         return response()->json($response);
     }
@@ -44,8 +44,8 @@ class CountriesController extends Controller
      */
     public function getCitiesByCode($code)
     {
-        $response['status'] = true;
-        $response['code'] = 200;
+        $response["status"] = true;
+        $response["code"] = 200;
 
         $country = $this->countriesRepository->getByCode($code);
 
@@ -53,11 +53,11 @@ class CountriesController extends Controller
 
             $cities = $this->countriesRepository->getCitiesByCode($code);
 
-            $response['data']['cities'] = $cities;
+            $response["data"]["cities"] = $cities;
         } else {
 
-            $response['status'] = false;
-            $response['code'] = 404;
+            $response["status"] = false;
+            $response["code"] = 404;
         }
 
 

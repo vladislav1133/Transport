@@ -13,11 +13,11 @@ class CreateRoutesTable extends Migration
      */
     public function up()
     {
-        Schema::create('routes', function (Blueprint $table) {
-            $table->increments('id');
-            $table->integer('city_id')->unsigned();
-            $table->foreign('city_id')->references('id')->on('cities')->onDelete('restrict')->onUpdate('cascade');
-            $table->float('distance', 8, 2);
+        Schema::create("routes", function (Blueprint $table) {
+            $table->increments("id");
+            $table->integer("city_id")->unsigned();
+            $table->foreign("city_id")->references("id")->on("cities")->onDelete("restrict")->onUpdate("cascade");
+            $table->float("distance", 8, 2);
             $table->timestamps();
         });
     }
@@ -29,6 +29,6 @@ class CreateRoutesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('routes');
+        Schema::dropIfExists("routes");
     }
 }

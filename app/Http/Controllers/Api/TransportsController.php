@@ -25,10 +25,10 @@ class TransportsController extends Controller
      */
     public function getAll()
     {
-        $response['status'] = true;
-        $response['code'] = 200;
+        $response["status"] = true;
+        $response["code"] = 200;
 
-        $response['data']['transports'] = $this->transportsRepository->getAll();
+        $response["data"]["transports"] = $this->transportsRepository->getAll();
 
         return response()->json($response);
     }
@@ -41,19 +41,19 @@ class TransportsController extends Controller
      */
     public function getById($id)
     {
-        $response['status'] = true;
-        $response['code'] = 200;
+        $response["status"] = true;
+        $response["code"] = 200;
 
         $transport = $this->transportsRepository->getById($id);
 
         if ($transport) {
 
-            $response['data']['transport'] = $transport;
+            $response["data"]["transport"] = $transport;
 
         } else {
-            $response['status'] = false;
-            $response['code'] = 404;
-            $response['errors'][] = 'Transports not found';
+            $response["status"] = false;
+            $response["code"] = 404;
+            $response["errors"][] = "Transports not found";
         }
 
         return response()->json($response);

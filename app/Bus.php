@@ -8,24 +8,24 @@ class Bus extends Model
 {
 
     protected $fillable = [
-        'lon',
-        'lat'
+        "lon",
+        "lat"
     ];
 
     protected $hidden = [
-        'token',
-        'lon',
-        'lat'
+        "token",
+        "lon",
+        "lat"
     ];
 
     public function description() {
 
-        return $this->belongsTo('App\Description');
+        return $this->belongsTo("App\Description");
     }
 
     public function route() {
 
-        return $this->belongsTo('App\Route');
+        return $this->belongsTo("App\Route");
     }
 
 

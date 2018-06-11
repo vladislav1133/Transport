@@ -22,7 +22,7 @@ class CitiesRepository
 
     public function getById($id) {
 
-        $city = City::where('id', $id)->where('available', 1)->first();
+        $city = City::where("id", $id)->where("available", 1)->first();
 
         return $city;
     }
@@ -34,7 +34,7 @@ class CitiesRepository
         $city = $this->getById($id);
 
         if ($city) {
-            $routes = Route::with('stops')->where('city_id', $city->id)->get();
+            $routes = Route::with("stops")->where("city_id", $city->id)->get();
         }
 
         return $routes;
@@ -47,8 +47,8 @@ class CitiesRepository
         $city = $this->getById($id);
 
         if ($city) {
-            $transports = Route::with('transports')->where('city_id', $city->id)->get()
-                ->pluck('transports')->toArray();
+            $transports = Route::with("transports")->where("city_id", $city->id)->get()
+                ->pluck("transports")->toArray();
         }
 
         return $transports;

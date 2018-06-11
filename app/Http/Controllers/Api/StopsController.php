@@ -28,12 +28,12 @@ class StopsController extends Controller
      */
     public function getAll()
     {
-        $response['status'] = true;
-        $response['code'] = 200;
+        $response["status"] = true;
+        $response["code"] = 200;
 
         $stops = $this->stopsRepository->getAll();
 
-        $response['data']['stops'] = $stops;
+        $response["data"]["stops"] = $stops;
 
         return response()->json($response);
     }
@@ -43,17 +43,17 @@ class StopsController extends Controller
      */
     public function getById($id)
     {
-        $response['status'] = true;
-        $response['code'] = 200;
+        $response["status"] = true;
+        $response["code"] = 200;
 
         $stop = $this->stopsRepository->getById($id);
 
         if ($stop) {
 
-            $response['data']['stop'] = $stop;
+            $response["data"]["stop"] = $stop;
         } else {
-            $response['status'] = false;
-            $response['errors'][] = 'Stop not Found';
+            $response["status"] = false;
+            $response["errors"][] = "Stop not Found";
         }
 
         return response()->json($response);
@@ -64,16 +64,19 @@ class StopsController extends Controller
      */
     public function getNearestBus($stopId, GetNearestBusRequest $request)
     {
+        $response["status"] = true;
+        $response["code"] = 200;
+        $response["payload"] = $request->all();
         $lon = $request->lon;
         $lat = $request->lat;
 
         $busesDistance = Stop::getBusesDistanceToUser($lon,$lat,$stopId);
 
-        $response['status'] = true;
-        $response['data']['busDistance'] = $busesDistance;
-        $response['payload'] = [
-            'lon' => $request->lon,
-            'lat' => $request->lat
+
+        $response["data"]["busDistance"] = $busesDistance;
+        $response["payload"] = [
+            "lon" => $request->lon,
+            "lat" => $request->lat
         ];
 
         return response()->json($response);

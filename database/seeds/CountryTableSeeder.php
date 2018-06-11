@@ -13,16 +13,16 @@ class CountryTableSeeder extends Seeder
      */
     public function run()
     {
-        $countries = Config::get('countries');
+        $countries = Config::get("countries");
 
         foreach ($countries as $code => $name) {
 
-            $available = ($code === 'UA') ? 1 : 0;
+            $available = ($code === "UA") ? 1 : 0;
 
             Country::create([
-                'code' => $code,
-                'name' => $name,
-                'available' => $available
+                "code" => $code,
+                "name" => $name,
+                "available" => $available
             ]);
         }
     }

@@ -13,10 +13,10 @@ class RoleTableSeeder extends Seeder
      */
     public function run()
     {
-        Bouncer::role()->create(['name' => 'super-admin', 'title' => 'Super Administrator']);
-        Bouncer::role()->create(['name' => 'admin', 'title' => 'Administrator']);
+        Bouncer::role()->create(["name" => "super-admin", "title" => "Super Administrator"]);
+        Bouncer::role()->create(["name" => "admin", "title" => "Administrator"]);
 
         $user = User::first();
-        $user->assign('super-admin');
+        $user->assign("super-admin");
     }
 }

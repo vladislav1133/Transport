@@ -17,7 +17,7 @@ class StopsRepository
 
     public function getById($id) {
 
-        $stop = Stop::where('id', $id)->first();
+        $stop = Stop::where("id", $id)->first();
 
         return $stop;
     }

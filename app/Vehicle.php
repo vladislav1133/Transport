@@ -6,15 +6,15 @@ use Illuminate\Database\Eloquent\Model;
 
 class Vehicle extends Model
 {
-    protected $hidden = ['token'];
+    protected $hidden = ["token"];
 
     protected $fillable = [
-        'lon',
-        'lat'
+        "lon",
+        "lat"
     ];
 
     public function transport() {
 
-        return $this->belongsTo('App\Transport');
+        return $this->belongsTo("App\Transport");
     }
 }
