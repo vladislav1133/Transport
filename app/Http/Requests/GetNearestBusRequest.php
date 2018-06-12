@@ -25,7 +25,7 @@ class GetNearestBusRequest extends FormRequest
     {
         return [
             'lon' => 'required|numeric|min:0',
-            'lat' => 'required|numeric|min:0',
+            'lat' => 'required|numeric|min:0'
         ];
     }
 }

@@ -50,6 +50,10 @@ class StopsControllerTest extends TestCase
 //
 //        //stops/{stopId}/nearest
 //
-//        $response = json_decode($this->json("GET", "stops/{stopId}/nearest")->getContent());
+//        $response = json_decode($this->json("GET", "/stops/1/nearest", [
+//
+//        ])->getContent());
+//
+//        dd($response);
 //    }
 }

@@ -61,28 +61,23 @@ class StopsController extends Controller
 
     /**
      * Display a nearest bus for user.
+     *
+     * @param GetNearestBusRequest $request
+     * @return \Illuminate\Http\JsonResponse
      */
-    public function getNearestBus($stopId, GetNearestBusRequest $request)
+    public function getNearestBus($stopId, GetNearestBusRequest $request) //
     {
         $response["status"] = true;
         $response["code"] = 200;
         $response["payload"] = $request->all();
-        $lon = $request->lon;
-        $lat = $request->lat;
 
-        $busesDistance = Stop::getBusesDistanceToUser($lon,$lat,$stopId);
-
+        $busesDistance = $this->stopsRepository->getNearestVehicleToUser(["lon" => $request->lon, "lat" => $request->lat], $stopId);
 
         $response["data"]["busDistance"] = $busesDistance;
-        $response["payload"] = [
-            "lon" => $request->lon,
-            "lat" => $request->lat
-        ];
+
 
         return response()->json($response);
     }
-
-
 }
 
 

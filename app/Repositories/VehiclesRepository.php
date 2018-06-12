@@ -25,7 +25,7 @@ class VehiclesRepository {
         $vehicle->lon = $request->lon;
         $vehicle->lat = $request->lat;
         $vehicle->direction = $request->direction;
-        $vehicle->available = $request->available;
+        if(isset($request->available)) $vehicle->available = $request->available;
         return $vehicle->save();
     }
 }

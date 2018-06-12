@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Api;
 
+use App\Http\Requests\GetNearestBusRequest;
 use App\Http\Requests\UpdateBusRequest;
 use App\Repositories\VehiclesRepository;
 use App\Vehicle;
@@ -99,5 +100,8 @@ class VehiclesController extends Controller
 
         return response()->json($response);
     }
+
+
+
 
 }
