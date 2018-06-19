@@ -24,9 +24,12 @@ class DatabaseSeeder extends Seeder
 
 
         $this->call(StopTableSeeder::class);
+        $this->call(TransportTypeTableSeeder::class);
         $this->call(TransportTableSeeder::class);
         $this->call(VehicleTableSeeder::class);
         $this->call(RouteTableSeeder::class);
+
+        $this->call(EventLogsTableSeeder::class);
 
         DB::statement("SET FOREIGN_KEY_CHECKS=1;");
 

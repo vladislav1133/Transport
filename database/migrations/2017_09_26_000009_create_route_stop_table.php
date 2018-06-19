@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class TableRouteStopTable extends Migration
+class CreateRouteStopTable extends Migration
 {
     /**
      * Run the migrations.
@@ -31,6 +31,6 @@ class TableRouteStopTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists("=route_stop");
+        Schema::dropIfExists('route_stop');
     }
 }

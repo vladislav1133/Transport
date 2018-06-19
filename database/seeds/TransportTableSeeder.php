@@ -13,7 +13,7 @@ class TransportTableSeeder extends Seeder
     public function run()
     {
         Transport::create([
-            "type" => "bus",
+            "type_id" => 1,
             "route_id" => 1,
             "number" => 289,
             "price" => "4.0 UAH",

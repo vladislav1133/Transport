@@ -9,15 +9,17 @@ class RoutesRepository
 {
     public function getAll() {
 
-        $routes = Route::with("stops")->get();
+        $routes = Route::with(["stops", "transports.vehicles"])->get();
 
         return $routes;
     }
 
     public function getById($id) {
 
-        $route = Route::where("id", $id)->first();
+        $route = Route::with(["stops", "transports.vehicles"])->where("id", $id)->first();
 
         return $route;
     }
+
+
 }

@@ -6,6 +6,7 @@ use App\Http\Requests\GetNearestBusRequest;
 use App\Http\Requests\UpdateBusRequest;
 use App\Repositories\VehiclesRepository;
 use App\Vehicle;
+use App\VehicleEventLog;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -90,6 +91,12 @@ class VehiclesController extends Controller
 
 
                 $this->vehiclesRepository->updatePosition($vehicle, $request);
+
+                VehicleEventLog::create([
+                   'vehicle_id' => $id,
+                   'lon' => $request->lon,
+                   'lat' =>  $request->lat
+                ]);
             }
         } else {
 

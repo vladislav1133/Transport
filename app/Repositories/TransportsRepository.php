@@ -8,15 +8,22 @@ class TransportsRepository {
 
     public function getAll() {
 
-        $transports = Transport::with(["vehicles"])->get();
+        $transports = Transport::with(["vehicles", "type"])->get()->toArray();
 
+        foreach ($transports as &$transport) {
+
+
+            $transport['type'] = $transport['type']['type'];
+        }
 
         return $transports;
     }
 
     public function getById($id) {
 
-        $transport = Transport::with(["vehicles"])->where("id", $id)->first();
+        $transport = Transport::with(["vehicles", "type"])->where("id", $id)->first()->toArray();
+
+        $transport['type'] = $transport['type']['type'];
 
         return $transport;
     }

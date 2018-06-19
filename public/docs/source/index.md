@@ -51,22 +51,9 @@ $.ajax(settings).done(function (response) {
 ```json
 {
     "status": true,
+    "code": 200,
     "data": {
-        "transports": [
-            [
-                {
-                    "id": 1,
-                    "route_id": 1,
-                    "number": "289",
-                    "type": "bus",
-                    "price": "4.0 UAH",
-                    "interval": "15-20",
-                    "work_time": "7:00-21:45",
-                    "created_at": "2018-05-30 05:21:40",
-                    "updated_at": "2018-05-30 05:21:40"
-                }
-            ]
-        ]
+        "transports": []
     }
 }
 ```
@@ -110,102 +97,9 @@ $.ajax(settings).done(function (response) {
 ```json
 {
     "status": true,
+    "code": 200,
     "data": {
-        "routes": [
-            {
-                "id": 1,
-                "city_id": 1,
-                "distance": 2.88,
-                "created_at": "2018-05-30 05:21:41",
-                "updated_at": "2018-05-30 05:21:41",
-                "stops": [
-                    {
-                        "id": 1,
-                        "name": "м. Пушкинская 2",
-                        "lon": 36.247834,
-                        "lat": 50.004178,
-                        "created_at": "2018-05-30 05:21:40",
-                        "updated_at": "2018-05-30 05:21:40",
-                        "pivot": {
-                            "route_id": 1,
-                            "stop_id": 1
-                        }
-                    },
-                    {
-                        "id": 2,
-                        "name": "ул. Студенческая",
-                        "lon": 36.251998,
-                        "lat": 50.00744,
-                        "created_at": "2018-05-30 05:21:40",
-                        "updated_at": "2018-05-30 05:21:40",
-                        "pivot": {
-                            "route_id": 1,
-                            "stop_id": 2
-                        }
-                    },
-                    {
-                        "id": 3,
-                        "name": "спуск Журавлёвский",
-                        "lon": 36.254763,
-                        "lat": 50.010589,
-                        "created_at": "2018-05-30 05:21:40",
-                        "updated_at": "2018-05-30 05:21:40",
-                        "pivot": {
-                            "route_id": 1,
-                            "stop_id": 3
-                        }
-                    },
-                    {
-                        "id": 4,
-                        "name": "Спорткомплекс",
-                        "lon": 36.259777,
-                        "lat": 50.015822,
-                        "created_at": "2018-05-30 05:21:40",
-                        "updated_at": "2018-05-30 05:21:40",
-                        "pivot": {
-                            "route_id": 1,
-                            "stop_id": 4
-                        }
-                    },
-                    {
-                        "id": 5,
-                        "name": "Институт прокуратуры",
-                        "lon": 36.2639,
-                        "lat": 50.018403,
-                        "created_at": "2018-05-30 05:21:40",
-                        "updated_at": "2018-05-30 05:21:40",
-                        "pivot": {
-                            "route_id": 1,
-                            "stop_id": 5
-                        }
-                    },
-                    {
-                        "id": 6,
-                        "name": "Факультет Мехатроники ТС ХНАДУ",
-                        "lon": 36.266584,
-                        "lat": 50.019612,
-                        "created_at": "2018-05-30 05:21:40",
-                        "updated_at": "2018-05-30 05:21:40",
-                        "pivot": {
-                            "route_id": 1,
-                            "stop_id": 6
-                        }
-                    },
-                    {
-                        "id": 7,
-                        "name": "13-е городское кладбище",
-                        "lon": 36.270597,
-                        "lat": 50.020892,
-                        "created_at": "2018-05-30 05:21:40",
-                        "updated_at": "2018-05-30 05:21:40",
-                        "pivot": {
-                            "route_id": 1,
-                            "stop_id": 7
-                        }
-                    }
-                ]
-            }
-        ]
+        "routes": []
     }
 }
 ```
@@ -250,17 +144,9 @@ $.ajax(settings).done(function (response) {
 ```json
 {
     "status": true,
+    "code": 200,
     "data": {
-        "countries": [
-            {
-                "id": 228,
-                "code": "UA",
-                "name": "Ukraine",
-                "available": 1,
-                "created_at": "2018-05-30 05:21:39",
-                "updated_at": "2018-05-30 05:21:39"
-            }
-        ]
+        "countries": []
     }
 }
 ```
@@ -304,9 +190,7 @@ $.ajax(settings).done(function (response) {
 ```json
 {
     "status": false,
-    "errors": [
-        "Not Found"
-    ]
+    "code": 404
 }
 ```
 
@@ -350,102 +234,9 @@ $.ajax(settings).done(function (response) {
 ```json
 {
     "status": true,
+    "code": 200,
     "data": {
-        "routes": [
-            {
-                "id": 1,
-                "city_id": 1,
-                "distance": 2.88,
-                "created_at": "2018-05-30 05:21:41",
-                "updated_at": "2018-05-30 05:21:41",
-                "stops": [
-                    {
-                        "id": 1,
-                        "name": "м. Пушкинская 2",
-                        "lon": 36.247834,
-                        "lat": 50.004178,
-                        "created_at": "2018-05-30 05:21:40",
-                        "updated_at": "2018-05-30 05:21:40",
-                        "pivot": {
-                            "route_id": 1,
-                            "stop_id": 1
-                        }
-                    },
-                    {
-                        "id": 2,
-                        "name": "ул. Студенческая",
-                        "lon": 36.251998,
-                        "lat": 50.00744,
-                        "created_at": "2018-05-30 05:21:40",
-                        "updated_at": "2018-05-30 05:21:40",
-                        "pivot": {
-                            "route_id": 1,
-                            "stop_id": 2
-                        }
-                    },
-                    {
-                        "id": 3,
-                        "name": "спуск Журавлёвский",
-                        "lon": 36.254763,
-                        "lat": 50.010589,
-                        "created_at": "2018-05-30 05:21:40",
-                        "updated_at": "2018-05-30 05:21:40",
-                        "pivot": {
-                            "route_id": 1,
-                            "stop_id": 3
-                        }
-                    },
-                    {
-                        "id": 4,
-                        "name": "Спорткомплекс",
-                        "lon": 36.259777,
-                        "lat": 50.015822,
-                        "created_at": "2018-05-30 05:21:40",
-                        "updated_at": "2018-05-30 05:21:40",
-                        "pivot": {
-                            "route_id": 1,
-                            "stop_id": 4
-                        }
-                    },
-                    {
-                        "id": 5,
-                        "name": "Институт прокуратуры",
-                        "lon": 36.2639,
-                        "lat": 50.018403,
-                        "created_at": "2018-05-30 05:21:40",
-                        "updated_at": "2018-05-30 05:21:40",
-                        "pivot": {
-                            "route_id": 1,
-                            "stop_id": 5
-                        }
-                    },
-                    {
-                        "id": 6,
-                        "name": "Факультет Мехатроники ТС ХНАДУ",
-                        "lon": 36.266584,
-                        "lat": 50.019612,
-                        "created_at": "2018-05-30 05:21:40",
-                        "updated_at": "2018-05-30 05:21:40",
-                        "pivot": {
-                            "route_id": 1,
-                            "stop_id": 6
-                        }
-                    },
-                    {
-                        "id": 7,
-                        "name": "13-е городское кладбище",
-                        "lon": 36.270597,
-                        "lat": 50.020892,
-                        "created_at": "2018-05-30 05:21:40",
-                        "updated_at": "2018-05-30 05:21:40",
-                        "pivot": {
-                            "route_id": 1,
-                            "stop_id": 7
-                        }
-                    }
-                ]
-            }
-        ]
+        "routes": []
     }
 }
 ```
@@ -488,96 +279,10 @@ $.ajax(settings).done(function (response) {
 
 ```json
 {
-    "id": 1,
-    "city_id": 1,
-    "distance": 2.88,
-    "created_at": "2018-05-30 05:21:41",
-    "updated_at": "2018-05-30 05:21:41",
-    "stops": [
-        {
-            "id": 1,
-            "name": "м. Пушкинская 2",
-            "lon": 36.247834,
-            "lat": 50.004178,
-            "created_at": "2018-05-30 05:21:40",
-            "updated_at": "2018-05-30 05:21:40",
-            "pivot": {
-                "route_id": 1,
-                "stop_id": 1
-            }
-        },
-        {
-            "id": 2,
-            "name": "ул. Студенческая",
-            "lon": 36.251998,
-            "lat": 50.00744,
-            "created_at": "2018-05-30 05:21:40",
-            "updated_at": "2018-05-30 05:21:40",
-            "pivot": {
-                "route_id": 1,
-                "stop_id": 2
-            }
-        },
-        {
-            "id": 3,
-            "name": "спуск Журавлёвский",
-            "lon": 36.254763,
-            "lat": 50.010589,
-            "created_at": "2018-05-30 05:21:40",
-            "updated_at": "2018-05-30 05:21:40",
-            "pivot": {
-                "route_id": 1,
-                "stop_id": 3
-            }
-        },
-        {
-            "id": 4,
-            "name": "Спорткомплекс",
-            "lon": 36.259777,
-            "lat": 50.015822,
-            "created_at": "2018-05-30 05:21:40",
-            "updated_at": "2018-05-30 05:21:40",
-            "pivot": {
-                "route_id": 1,
-                "stop_id": 4
-            }
-        },
-        {
-            "id": 5,
-            "name": "Институт прокуратуры",
-            "lon": 36.2639,
-            "lat": 50.018403,
-            "created_at": "2018-05-30 05:21:40",
-            "updated_at": "2018-05-30 05:21:40",
-            "pivot": {
-                "route_id": 1,
-                "stop_id": 5
-            }
-        },
-        {
-            "id": 6,
-            "name": "Факультет Мехатроники ТС ХНАДУ",
-            "lon": 36.266584,
-            "lat": 50.019612,
-            "created_at": "2018-05-30 05:21:40",
-            "updated_at": "2018-05-30 05:21:40",
-            "pivot": {
-                "route_id": 1,
-                "stop_id": 6
-            }
-        },
-        {
-            "id": 7,
-            "name": "13-е городское кладбище",
-            "lon": 36.270597,
-            "lat": 50.020892,
-            "created_at": "2018-05-30 05:21:40",
-            "updated_at": "2018-05-30 05:21:40",
-            "pivot": {
-                "route_id": 1,
-                "stop_id": 7
-            }
-        }
+    "status": false,
+    "code": 200,
+    "errors": [
+        "Route not found"
     ]
 }
 ```
@@ -620,64 +325,13 @@ $.ajax(settings).done(function (response) {
 > Example response:
 
 ```json
-[
-    {
-        "id": 1,
-        "name": "м. Пушкинская 2",
-        "lon": 36.247834,
-        "lat": 50.004178,
-        "created_at": "2018-05-30 05:21:40",
-        "updated_at": "2018-05-30 05:21:40"
-    },
-    {
-        "id": 2,
-        "name": "ул. Студенческая",
-        "lon": 36.251998,
-        "lat": 50.00744,
-        "created_at": "2018-05-30 05:21:40",
-        "updated_at": "2018-05-30 05:21:40"
-    },
-    {
-        "id": 3,
-        "name": "спуск Журавлёвский",
-        "lon": 36.254763,
-        "lat": 50.010589,
-        "created_at": "2018-05-30 05:21:40",
-        "updated_at": "2018-05-30 05:21:40"
-    },
-    {
-        "id": 4,
-        "name": "Спорткомплекс",
-        "lon": 36.259777,
-        "lat": 50.015822,
-        "created_at": "2018-05-30 05:21:40",
-        "updated_at": "2018-05-30 05:21:40"
-    },
-    {
-        "id": 5,
-        "name": "Институт прокуратуры",
-        "lon": 36.2639,
-        "lat": 50.018403,
-        "created_at": "2018-05-30 05:21:40",
-        "updated_at": "2018-05-30 05:21:40"
-    },
-    {
-        "id": 6,
-        "name": "Факультет Мехатроники ТС ХНАДУ",
-        "lon": 36.266584,
-        "lat": 50.019612,
-        "created_at": "2018-05-30 05:21:40",
-        "updated_at": "2018-05-30 05:21:40"
-    },
-    {
-        "id": 7,
-        "name": "13-е городское кладбище",
-        "lon": 36.270597,
-        "lat": 50.020892,
-        "created_at": "2018-05-30 05:21:40",
-        "updated_at": "2018-05-30 05:21:40"
+{
+    "status": true,
+    "code": 200,
+    "data": {
+        "stops": []
     }
-]
+}
 ```
 
 ### HTTP Request
@@ -688,16 +342,16 @@ $.ajax(settings).done(function (response) {
 
 <!-- END_7c200603bc9096fbd79a4a9df3df03dc -->
 
-<!-- START_40ecf63ab0e072eb290381940691abb0 -->
+<!-- START_02284e67f9006999ea1267aa52843a2e -->
 ## Display a nearest bus for user.
 
 > Example request:
 
 ```bash
-curl -X GET "http://localhost/api/v1/stops/nearestbus/{stopId}" \
+curl -X GET "http://localhost/api/v1/stops/{stopId}/nearest" \
 -H "Accept: application/json" \
-    -d "lon"="370961550" \
-    -d "lat"="370961550" \
+    -d "lon"="737193781" \
+    -d "lat"="737193781" \
 
 ```
 
@@ -705,11 +359,11 @@ curl -X GET "http://localhost/api/v1/stops/nearestbus/{stopId}" \
 var settings = {
     "async": true,
     "crossDomain": true,
-    "url": "http://localhost/api/v1/stops/nearestbus/{stopId}",
+    "url": "http://localhost/api/v1/stops/{stopId}/nearest",
     "method": "GET",
     "data": {
-        "lon": 370961550,
-        "lat": 370961550
+        "lon": 737193781,
+        "lat": 737193781
 },
     "headers": {
         "accept": "application/json"
@@ -738,9 +392,9 @@ $.ajax(settings).done(function (response) {
 ```
 
 ### HTTP Request
-`GET api/v1/stops/nearestbus/{stopId}`
+`GET api/v1/stops/{stopId}/nearest`
 
-`HEAD api/v1/stops/nearestbus/{stopId}`
+`HEAD api/v1/stops/{stopId}/nearest`
 
 #### Parameters
 
@@ -749,7 +403,7 @@ Parameter | Type | Status | Description
     lon | numeric |  required  | Minimum: `0`
     lat | numeric |  required  | Minimum: `0`
 
-<!-- END_40ecf63ab0e072eb290381940691abb0 -->
+<!-- END_02284e67f9006999ea1267aa52843a2e -->
 
 <!-- START_0bcfc82a06f321a919516fb4e2473c23 -->
 ## Display the specified stop.
@@ -781,17 +435,11 @@ $.ajax(settings).done(function (response) {
 
 ```json
 {
-    "status": true,
-    "data": {
-        "stop": {
-            "id": 1,
-            "name": "м. Пушкинская 2",
-            "lon": 36.247834,
-            "lat": 50.004178,
-            "created_at": "2018-05-30 05:21:40",
-            "updated_at": "2018-05-30 05:21:40"
-        }
-    }
+    "status": false,
+    "code": 200,
+    "errors": [
+        "Stop not Found"
+    ]
 }
 ```
 
@@ -835,49 +483,9 @@ $.ajax(settings).done(function (response) {
 ```json
 {
     "status": true,
+    "code": 200,
     "data": {
-        "transports": [
-            {
-                "id": 1,
-                "route_id": 1,
-                "number": "289",
-                "type": "bus",
-                "price": "4.0 UAH",
-                "interval": "15-20",
-                "work_time": "7:00-21:45",
-                "created_at": "2018-05-30 05:21:40",
-                "updated_at": "2018-05-30 05:21:40",
-                "vehicles": [
-                    {
-                        "id": 1,
-                        "transport_id": 1,
-                        "direction": 1,
-                        "lon": 36.247834,
-                        "lat": 50.004178,
-                        "created_at": "2018-05-30 05:21:40",
-                        "updated_at": "2018-05-30 05:21:40"
-                    },
-                    {
-                        "id": 2,
-                        "transport_id": 1,
-                        "direction": 1,
-                        "lon": 36.254763,
-                        "lat": 50.010589,
-                        "created_at": "2018-05-30 05:21:41",
-                        "updated_at": "2018-05-30 05:21:41"
-                    },
-                    {
-                        "id": 3,
-                        "transport_id": 1,
-                        "direction": 0,
-                        "lon": 36.266584,
-                        "lat": 50.019612,
-                        "created_at": "2018-05-30 05:21:41",
-                        "updated_at": "2018-05-30 05:21:41"
-                    }
-                ]
-            }
-        ]
+        "transports": []
     }
 }
 ```
@@ -920,49 +528,11 @@ $.ajax(settings).done(function (response) {
 
 ```json
 {
-    "status": true,
-    "data": {
-        "transport": {
-            "id": 1,
-            "route_id": 1,
-            "number": "289",
-            "type": "bus",
-            "price": "4.0 UAH",
-            "interval": "15-20",
-            "work_time": "7:00-21:45",
-            "created_at": "2018-05-30 05:21:40",
-            "updated_at": "2018-05-30 05:21:40",
-            "vehicles": [
-                {
-                    "id": 1,
-                    "transport_id": 1,
-                    "direction": 1,
-                    "lon": 36.247834,
-                    "lat": 50.004178,
-                    "created_at": "2018-05-30 05:21:40",
-                    "updated_at": "2018-05-30 05:21:40"
-                },
-                {
-                    "id": 2,
-                    "transport_id": 1,
-                    "direction": 1,
-                    "lon": 36.254763,
-                    "lat": 50.010589,
-                    "created_at": "2018-05-30 05:21:41",
-                    "updated_at": "2018-05-30 05:21:41"
-                },
-                {
-                    "id": 3,
-                    "transport_id": 1,
-                    "direction": 0,
-                    "lon": 36.266584,
-                    "lat": 50.019612,
-                    "created_at": "2018-05-30 05:21:41",
-                    "updated_at": "2018-05-30 05:21:41"
-                }
-            ]
-        }
-    }
+    "status": false,
+    "code": 404,
+    "errors": [
+        "Transports not found"
+    ]
 }
 ```
 
@@ -1006,36 +576,9 @@ $.ajax(settings).done(function (response) {
 ```json
 {
     "status": true,
+    "code": 200,
     "data": {
-        "vehicles": [
-            {
-                "id": 1,
-                "transport_id": 1,
-                "direction": 1,
-                "lon": 36.247834,
-                "lat": 50.004178,
-                "created_at": "2018-05-30 05:21:40",
-                "updated_at": "2018-05-30 05:21:40"
-            },
-            {
-                "id": 2,
-                "transport_id": 1,
-                "direction": 1,
-                "lon": 36.254763,
-                "lat": 50.010589,
-                "created_at": "2018-05-30 05:21:41",
-                "updated_at": "2018-05-30 05:21:41"
-            },
-            {
-                "id": 3,
-                "transport_id": 1,
-                "direction": 0,
-                "lon": 36.266584,
-                "lat": 50.019612,
-                "created_at": "2018-05-30 05:21:41",
-                "updated_at": "2018-05-30 05:21:41"
-            }
-        ]
+        "vehicles": []
     }
 }
 ```
@@ -1047,6 +590,61 @@ $.ajax(settings).done(function (response) {
 
 
 <!-- END_12ff41f7ad1178889ff27d3f37371473 -->
+
+<!-- START_698e4398a5187cbc465191401cbd3968 -->
+## Update the specified vehicle.
+
+> Example request:
+
+```bash
+curl -X PUT "http://localhost/api/v1/vehicles/{id}" \
+-H "Accept: application/json" \
+    -d "lon"="1873262742" \
+    -d "lat"="1873262742" \
+    -d "direction"="1" \
+    -d "available"="1" \
+    -d "token"="officiis" \
+
+```
+
+```javascript
+var settings = {
+    "async": true,
+    "crossDomain": true,
+    "url": "http://localhost/api/v1/vehicles/{id}",
+    "method": "PUT",
+    "data": {
+        "lon": 1873262742,
+        "lat": 1873262742,
+        "direction": 1,
+        "available": 1,
+        "token": "officiis"
+},
+    "headers": {
+        "accept": "application/json"
+    }
+}
+
+$.ajax(settings).done(function (response) {
+    console.log(response);
+});
+```
+
+
+### HTTP Request
+`PUT api/v1/vehicles/{id}`
+
+#### Parameters
+
+Parameter | Type | Status | Description
+--------- | ------- | ------- | ------- | -----------
+    lon | numeric |  required  | Minimum: `0`
+    lat | numeric |  required  | Minimum: `0`
+    direction | numeric |  required  | Between: `0` and `1`
+    available | numeric |  optional  | Between: `0` and `1`
+    token | string |  required  | 
+
+<!-- END_698e4398a5187cbc465191401cbd3968 -->
 
 <!-- START_1a23e8b95bbe6e1a88591b687cff3158 -->
 ## Display the specified vehicle.
@@ -1078,18 +676,11 @@ $.ajax(settings).done(function (response) {
 
 ```json
 {
-    "status": true,
-    "data": {
-        "vehicle": {
-            "id": 1,
-            "transport_id": 1,
-            "direction": 1,
-            "lon": 36.247834,
-            "lat": 50.004178,
-            "created_at": "2018-05-30 05:21:40",
-            "updated_at": "2018-05-30 05:21:40"
-        }
-    }
+    "status": false,
+    "code": 404,
+    "errors": [
+        "Vehicle not found"
+    ]
 }
 ```
 
@@ -1100,56 +691,4 @@ $.ajax(settings).done(function (response) {
 
 
 <!-- END_1a23e8b95bbe6e1a88591b687cff3158 -->
-
-<!-- START_698e4398a5187cbc465191401cbd3968 -->
-## Update the specified vehicle.
-
-> Example request:
-
-```bash
-curl -X PUT "http://localhost/api/v1/vehicles/{id}" \
--H "Accept: application/json" \
-    -d "lon"="1873262742" \
-    -d "lat"="1873262742" \
-    -d "direction"="1" \
-    -d "token"="officiis" \
-
-```
-
-```javascript
-var settings = {
-    "async": true,
-    "crossDomain": true,
-    "url": "http://localhost/api/v1/vehicles/{id}",
-    "method": "PUT",
-    "data": {
-        "lon": 1873262742,
-        "lat": 1873262742,
-        "direction": 1,
-        "token": "officiis"
-},
-    "headers": {
-        "accept": "application/json"
-    }
-}
-
-$.ajax(settings).done(function (response) {
-    console.log(response);
-});
-```
-
-
-### HTTP Request
-`PUT api/v1/vehicles/{id}`
-
-#### Parameters
-
-Parameter | Type | Status | Description
---------- | ------- | ------- | ------- | -----------
-    lon | numeric |  required  | Minimum: `0`
-    lat | numeric |  required  | Minimum: `0`
-    direction | numeric |  required  | Between: `0` and `1`
-    token | string |  required  | 
-
-<!-- END_698e4398a5187cbc465191401cbd3968 -->
 
